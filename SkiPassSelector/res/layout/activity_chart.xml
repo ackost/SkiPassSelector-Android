@@ -7,7 +7,7 @@
     <TabHost
         android:id="@android:id/tabhost"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_gravity="top" >
 
         <LinearLayout
@@ -31,44 +31,22 @@
                 <LinearLayout
                     android:id="@+id/calendar_tab"
                     android:layout_width="match_parent"
-                    android:layout_height="520dip"
-                    android:orientation="vertical" >
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
                     
-                    <CalendarView
-                        android:id="@+id/calendarView1"
-                        android:layout_width="match_parent"
-                        android:layout_height="0dip"
-                        android:layout_gravity="top"
-                        android:layout_weight="1.77"
-                        android:showWeekNumber="false"
-                        android:shownWeekCount="5" />
-
-                    <TextView
-                        android:id="@+id/editText_legend"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:text="@string/legend" />
-                    
-                    <Spinner
-   					 android:id="@+id/tickets_spinner"
-   					 android:layout_width="fill_parent"
-   					 android:layout_height="wrap_content" /> 
-                     
-                     
                 </LinearLayout>
 
                 <LinearLayout
                     android:id="@+id/chart_tab"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="horizontal">   
+                    android:orientation="horizontal">
                     
                 </LinearLayout>
             </FrameLayout>
         </LinearLayout>
     </TabHost>
 
-   
+
 
 </LinearLayout>
