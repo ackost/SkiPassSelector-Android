@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/seasonPassText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Season Pass" />
+
+    <TextView
+        android:id="@+id/seasonPassResultsText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10" 
+        android:text=""/>
+
+    <TextView
+        android:id="@+id/advantageCardText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Advantage Card" />
+
+    <TextView
+        android:id="@+id/advantageCardResultsText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10" 
+        android:text=""/>
+
+    <TextView
+        android:id="@+id/nightClubText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Night Club Card" />
+
+    <TextView
+        android:id="@+id/nightClubResultsText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10" 
+        android:text=""/>
+
+    <TextView
+        android:id="@+id/nccAcText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="NCC with AC" />
+
+    <TextView
+        android:id="@+id/nccAcTextResults"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10" 
+        android:text=""/>
+
+    <TextView
+        android:id="@+id/windowRateText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Window Rate" />
+
+    <TextView
+        android:id="@+id/windowRateResultsText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10" 
+        android:text=""/>
+
+</LinearLayout>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+    <group android:id="@+id/group_ticketmenu">
+         <item android:id="@+id/titleEntry"
+            android:title="Choose a ticket" android:enabled="false"/>
+        <item android:id="@+id/fourHr"
+            android:title="4 hour"/>
+        <item android:id="@+id/eightHr"
+            android:title="8 hour"/>
+        <item android:id="@+id/allday"
+            android:title="All day"/>
+        <item android:id="@+id/night"
+            android:title="Night"/>
+        <item android:id="@+id/remove"
+            android:title="Clear this day"/>
+    </group>
+
+</menu>

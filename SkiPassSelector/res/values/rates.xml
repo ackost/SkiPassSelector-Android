@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="fhmwRate" type="integer">50</item>
+    <item name="ehmwRate" type="integer">55</item>
+    <item name="admwRate" type="integer">64</item>
+    <item name="nmwRate" type="integer">42</item>
+    
+    <item name="fhwkndRate" type="integer">60</item>
+    <item name="ehwkndRate" type="integer">67</item> 
+    <item name="adwkndRate" type="integer">71</item>
+    <item name="nwkndRate" type="integer">42</item>    
+    
+    <item name="seasonPass" type="integer">649</item>
+    <item name="seasonPass_early" type ="integer">449</item>
+    
+    <item name="advantageCard" type = "integer">119</item>
+    <item name="advantageCard_early" type = "integer">84</item>
+    
+    <item name="nightClubCard" type = "integer">204</item>
+    <item name="nightClubCard_early" type = "integer">179</item>
+    
+    <item name="NCCwAC" type = "integer">224</item>
+    <item name="NCCwAC_early" type = "integer">199</item>
+    
+</resources>
