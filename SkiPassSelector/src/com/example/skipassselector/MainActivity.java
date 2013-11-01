@@ -1,12 +1,11 @@
 package com.example.skipassselector;
 
-import java.util.HashSet;
+import java.util.HashMap;
 import java.util.Locale;
-
-import com.example.skipassselector.CalendarFragment.OnTicketChangedListener;
 
 import android.app.ActionBar;
 import android.app.FragmentTransaction;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -15,6 +14,8 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.Menu;
 import android.widget.Toast;
+
+import com.example.skipassselector.CalendarFragment.OnTicketChangedListener;
 
 
 public class MainActivity extends FragmentActivity implements
@@ -35,21 +36,11 @@ public class MainActivity extends FragmentActivity implements
 	 */
 	ViewPager mViewPager;
 	
-	
-	
-	
-	// HashSets will hold strings representations of the dates tickets are added
-	static HashSet<String> fourHourMwSet = new HashSet<String>();
-	static HashSet<String> eightHourMwSet = new HashSet<String>();
-	static HashSet<String> allDayMwSet = new HashSet<String>();
-	static HashSet<String> nightMwSet = new HashSet<String>();
-	
-	static HashSet<String> fourHourWkndSet = new HashSet<String>();
-	static HashSet<String> eightHourWkndSet = new HashSet<String>();
-	static HashSet<String> allDayWkndSet = new HashSet<String>();
-	static HashSet<String> nightWkndSet = new HashSet<String>();
+	//HashMap uses dates as keys, ticket types as values
+	public static HashMap<String, String> datesAndTickets = new HashMap<String, String>();
 			
 	static TicketSets ticketsets;  //enum of ticket names
+	
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -68,6 +59,18 @@ public class MainActivity extends FragmentActivity implements
 		mViewPager = (ViewPager) findViewById(R.id.pager);
 		mViewPager.setAdapter(mSectionsPagerAdapter);
 
+		//Create initial ResultsFragment and put it in the ViewPager
+		ResultsFragment firstRF = new ResultsFragment();
+		firstRF.setArguments(getIntent().getExtras());
+		getSupportFragmentManager().beginTransaction().add(R.id.pager, firstRF, "tag_123").commit();
+		
+		//Create initial ChartFragment and put it in the ViewPager
+		ChartFragment firstCF = new ChartFragment();
+		firstCF.setArguments(getIntent().getExtras());
+		getSupportFragmentManager().beginTransaction().add(R.id.pager, firstCF).commit();
+		
+		
+		
 		// When swiping between different sections, select the corresponding
 		// tab. We can also use ActionBar.Tab#select() to do this if we have
 		// a reference to the Tab.
@@ -118,54 +121,92 @@ public class MainActivity extends FragmentActivity implements
 	}
 
 
-	public static float getWindowRateTotal() {
-		return ticketMath_WindowRate(fourHourMwSet, eightHourMwSet, allDayMwSet, nightMwSet, fourHourWkndSet, eightHourWkndSet, allDayWkndSet, nightWkndSet);
+	public static int getWindowRateTotal() {
+		return ticketMath_WindowRate();
 	}
 	
-	public static float ticketMath_WindowRate(HashSet<String> fhmw, HashSet<String> ehmw, HashSet<String> admw, HashSet<String> nmw, 
-			HashSet<String> fhwknd, HashSet<String> ehwknd, HashSet<String> adwknd, HashSet<String> nwknd) {
+	public static int ticketMath_WindowRate() {
 		// returns the sum of all tickets * rates, at full price
-		int fhmwDays = fhmw.size();
-		int ehmwDays = ehmw.size();
-		int admwDays = admw.size();
-		int nmwDays = nmw.size();
+		int fhmwDays = 0;
+		int ehmwDays = 0;
+		int admwDays = 0;
+		int nmwDays = 0;
+		int fhwkndDays = 0;
+		int ehwkndDays = 0;
+		int adwkndDays = 0;
+		int nwkndDays = 0;
 		
-		int fhwkndDays = fhwknd.size();
-		int ehwkndDays = ehwknd.size();
-		int adwkndDays = adwknd.size();
-		int nwkndDays = nwknd.size();
+		int total = 0;
 		
-		float total = 0;
+		for (String s : datesAndTickets.values()){
+			if (s.equals("FOUR_HOUR_MW"))
+				fhmwDays++;
+			if (s.equals("EIGHT_HOUR_MW"))
+				ehmwDays++;
+			if (s.equals("ALL_DAY_MW"))
+				admwDays++;
+			if (s.equals("NIGHT_MW"))
+				nmwDays++;
+			if (s.equals("FOUR_HOUR_WKND"))
+				fhwkndDays++;
+			if (s.equals("EIGHT_HOUR_WKND"))
+				ehwkndDays++;
+			if (s.equals("ALL_DAY_WKND"))
+				adwkndDays++;
+			if (s.equals("NIGHT_WKND"))
+				nwkndDays++;
+		}
 		
-		total = (fhmwDays * R.integer.fhmwRate) + (ehmwDays * R.integer.ehmwRate) + (admwDays * R.integer.admwRate) + (nmwDays * R.integer.nmwRate) + 
-				(fhwkndDays * R.integer.fhwkndRate) + (ehwkndDays * R.integer.ehwkndRate) + (adwkndDays * R.integer.adwkndRate) + (nwkndDays * R.integer.adwkndRate);
+		total = (fhmwDays * 50) + (ehmwDays * 55) + (admwDays * 64) + (nmwDays * 42) + 
+				(fhwkndDays * 60) + (ehwkndDays * 67) + (adwkndDays * 71) + (nwkndDays * 42);
+		
 		
 		return total;
 	}
 	
 	public static float getAcRateTotal() {
-		return ticketMath_AdvantageCard(fourHourMwSet, eightHourMwSet, allDayMwSet, nightMwSet, fourHourWkndSet, eightHourWkndSet, allDayWkndSet, nightWkndSet);
+		return ticketMath_AdvantageCard();
 	}
 	
-	public static float ticketMath_AdvantageCard(HashSet<String> fhmw, HashSet<String> ehmw, HashSet<String> admw, HashSet<String> nmw, 
-			HashSet<String> fhwknd, HashSet<String> ehwknd, HashSet<String> adwknd, HashSet<String> nwknd) {
+	public static float ticketMath_AdvantageCard() {
 		// returns the sum tickets * rates, at advantage card rates, after removing 1 of every 6 days 
 		
-		int fhmwDays = fhmw.size();
-		int ehmwDays = ehmw.size();
-		int admwDays = admw.size();
-		int nmwDays = nmw.size();
-		
-		int fhwkndDays = fhwknd.size();
-		int ehwkndDays = ehwknd.size();
-		int adwkndDays = adwknd.size();
-		int nwkndDays = nwknd.size();
+		int fhmwDays = 0;
+		int ehmwDays = 0;
+		int admwDays = 0;
+		int nmwDays = 0;
+		int fhwkndDays = 0;
+		int ehwkndDays = 0;
+		int adwkndDays = 0;
+		int nwkndDays = 0;
 		
 		//TODO: put an IF here to determine if early price should be used
-		float total = R.integer.advantageCard;
+		// if (not early flag = true) {
+		//float total = 119; } else {
+		float total = 84;
+		
+		for (String s : datesAndTickets.values()){
+			if (s.equals("FOUR_HOUR_MW"))
+				fhmwDays++;
+			if (s.equals("EIGHT_HOUR_MW"))
+				ehmwDays++;
+			if (s.equals("ALL_DAY_MW"))
+				admwDays++;
+			if (s.equals("NIGHT_MW"))
+				nmwDays++;
+			if (s.equals("FOUR_HOUR_WKND"))
+				fhwkndDays++;
+			if (s.equals("EIGHT_HOUR_WKND"))
+				ehwkndDays++;
+			if (s.equals("ALL_DAY_WKND"))
+				adwkndDays++;
+			if (s.equals("NIGHT_WKND"))
+				nwkndDays++;
+		}
 		
 		int[] daysCountArray = {fhmwDays, ehmwDays, admwDays, nmwDays, fhwkndDays, ehwkndDays, adwkndDays, nwkndDays};
-		int[] ratesArray = {R.integer.fhmwRate, R.integer.ehmwRate, R.integer.admwRate, R.integer.nmwRate, R.integer.fhwkndRate, R.integer.ehwkndRate, R.integer.adwkndRate, nwkndDays * R.integer.nwkndRate};
+		int[] ratesArray = {50, 55, 64, 42, 60, 67, 71, 42};
+		
 		//if any single ticket types have more than 6, reduce free days from those ticket types first
 		for (int i = 0; i < daysCountArray.length; i++) {
 			if (daysCountArray[i] >= 6) {
@@ -175,9 +216,9 @@ public class MainActivity extends FragmentActivity implements
 		
 		//if (after any reductions above) the total days of tickets is more than 6, reduce free days (indiscriminately)
 		int dayCountSum = 0;
-		//first, are there more than 6 total days?
-		for (int j = 0; j < daysCountArray.length; j++) {
-			dayCountSum = dayCountSum + daysCountArray[j];
+		//first, add up the days from all categories
+		for (int j : daysCountArray) {
+			dayCountSum = dayCountSum + j;
 		}
 		//find how many free days, and remove that number of days from the first available ticket type 
 		if (dayCountSum >= 6) {
@@ -189,8 +230,6 @@ public class MainActivity extends FragmentActivity implements
 				}
 				//now do the math to find the window rate cost of remaining tickets
 				total = total + (daysCountArray[k] * ratesArray[k]);	 
-				// What this really means is:  total = (fhmwDays * R.integer.fhmwRate) + (ehmwDays * R.integer.ehmwRate) + (admwDays * R.integer.admwRate) + (nmwDays * R.integer.nmwRate) + 
-				//			(fhwkndDays * R.integer.fhwkndRate) + (ehwkndDays * R.integer.ehwkndRate) + (adwkndDays * R.integer.adwkndRate) + (nwkndDays * R.integer.nwkndRate);
 				// now reduce total by advantage card discount (40%)
 				total = (float) (total * 0.6);
 			}
@@ -237,6 +276,7 @@ public class MainActivity extends FragmentActivity implements
 				args3.putInt(ResultsFragment.ARG_SECTION_NUMBER, position + 1);
 				fragment3.setArguments(args3);
 				return fragment3;
+				
 			
 			//default to Calendar Fragment	
 			default:
@@ -246,8 +286,7 @@ public class MainActivity extends FragmentActivity implements
 				fragment4.setArguments(args4);
 				return fragment4;
 			}
-			
-			
+					
 		}
 
 		@Override
@@ -273,11 +312,11 @@ public class MainActivity extends FragmentActivity implements
 
 	@Override
 	public void onTicketChangedListener() {
-		// TODO Auto-generated method stub
+		
 		String tMessage = "Just testing this listener";
 		Toast.makeText(MainActivity.this, tMessage, Toast.LENGTH_SHORT).show();
+
 			
-		//mSectionsPagerAdapter.getItem(1);
 	}
 
 	

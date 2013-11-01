@@ -3,6 +3,7 @@ package com.example.skipassselector;
 import java.util.Calendar;
 
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -27,7 +28,7 @@ public class CalendarFragment extends Fragment {
 		public void onTicketChangedListener();  //what to add in here?
 	}
 
-//	OnTicketChangedListener mListener;
+	OnTicketChangedListener mListener;
 	
 	public CalendarFragment() {
 	}
@@ -82,32 +83,30 @@ public class CalendarFragment extends Fragment {
 			public boolean onMenuItemClick(MenuItem item) {
 				switch (item.getItemId()){
 				case R.id.fourHr:
-					MainActivity.fourHourMwSet.add(mdy);
+					MainActivity.datesAndTickets.put(mdy, "FOUR_HOUR_MW");
 					break;
 				case R.id.eightHr:
-					MainActivity.eightHourMwSet.add(mdy);
+					MainActivity.datesAndTickets.put(mdy, "EIGHT_HOUR_MW");
 					break;
 				case R.id.allday:
-					MainActivity.allDayMwSet.add(mdy);
+					MainActivity.datesAndTickets.put(mdy, "ALL_DAY_MW");
 					break;
 				case R.id.night:
-					MainActivity.nightMwSet.add(mdy);
+					MainActivity.datesAndTickets.put(mdy, "NIGHT_MW");
 					break;
 				case R.id.remove:
-					MainActivity.fourHourMwSet.remove(mdy);
-					MainActivity.eightHourMwSet.remove(mdy);
-					MainActivity.allDayMwSet.remove(mdy);
-					MainActivity.nightMwSet.remove(mdy);
+					MainActivity.datesAndTickets.remove(mdy);
 					tMessage = "Midweek ticket removed";
 				}
-		//		mListener.onTicketChangedListener();
+		
+				mListener.onTicketChangedListener();
 				
 				Toast.makeText(getActivity(), tMessage, Toast.LENGTH_SHORT).show();
 				
 				
+				//Toast.makeText(getActivity(),  Integer.toString(MainActivity.datesAndTickets.size()), Toast.LENGTH_SHORT).show();
+				Toast.makeText(getActivity(),  Integer.toString(MainActivity.getWindowRateTotal()), Toast.LENGTH_SHORT).show();
 				
-				Toast.makeText(getActivity(),  Integer.toString(MainActivity.fourHourMwSet.size()), Toast.LENGTH_SHORT).show();
-
 				
 				return true;
 			}
@@ -119,32 +118,30 @@ public class CalendarFragment extends Fragment {
 			public boolean onMenuItemClick(MenuItem item) {
 				switch (item.getItemId()){
 				case R.id.fourHr:
-					MainActivity.fourHourWkndSet.add(mdy);
+					MainActivity.datesAndTickets.put(mdy, "FOUR_HOUR_WKND");
 					break;
 				case R.id.eightHr:
-					MainActivity.eightHourWkndSet.add(mdy);
+					MainActivity.datesAndTickets.put(mdy, "EIGHT_HOUR_WKND");
 					break;
 				case R.id.allday:
-					MainActivity.allDayWkndSet.add(mdy);
+					MainActivity.datesAndTickets.put(mdy, "ALL_DAY_WKND");
 					break;
-				case R.id.night:
-					MainActivity.nightWkndSet.add(mdy);
+				case R.id.night:					
+					MainActivity.datesAndTickets.put(mdy, "NIGHT_WKND");
 					break;
 				case R.id.remove:
-					MainActivity.fourHourWkndSet.remove(mdy);
-					MainActivity.eightHourWkndSet.remove(mdy);
-					MainActivity.allDayWkndSet.remove(mdy);
-					MainActivity.nightWkndSet.remove(mdy);
+					MainActivity.datesAndTickets.remove(mdy);
 					tMessage = "Weekend ticket removed";
 				}
 				
 				
-			//	mListener.onTicketChangedListener();
+				mListener.onTicketChangedListener();
 				
 						
 				Toast.makeText(getActivity(), tMessage, Toast.LENGTH_SHORT).show();
 				
-				Toast.makeText(getActivity(),  Integer.toString(MainActivity.fourHourMwSet.size()), Toast.LENGTH_SHORT).show();
+			//	Toast.makeText(getActivity(),  Integer.toString(MainActivity.datesAndTickets.size()), Toast.LENGTH_SHORT).show();
+				Toast.makeText(getActivity(),  Integer.toString(MainActivity.getWindowRateTotal()), Toast.LENGTH_SHORT).show();
 				
 				return true;
 			}
@@ -153,6 +150,15 @@ public class CalendarFragment extends Fragment {
 		return fragView;
 	}
 	
-
+	
+	@Override
+	public void onAttach(Activity activity) {
+		super.onAttach(activity);
+		try {
+			mListener = (OnTicketChangedListener) activity;
+		} catch (ClassCastException e) {
+			throw new ClassCastException(activity.toString() +" must implement OnTicketChangedListener");
+		}
+	}
 	
 }

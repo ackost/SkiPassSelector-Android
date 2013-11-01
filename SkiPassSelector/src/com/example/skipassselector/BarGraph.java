@@ -21,7 +21,7 @@ public class BarGraph {
 	//		arrList.toArray(y);
 			
 			float wr = MainActivity.getWindowRateTotal();
-			float ac = MainActivity.getAcRateTotal();
+	//		float ac = MainActivity.getAcRateTotal();
 			// put ncc here
 			// put ncc+ac here
 			float sp = 449;

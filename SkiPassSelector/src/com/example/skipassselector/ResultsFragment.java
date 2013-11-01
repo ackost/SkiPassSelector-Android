@@ -1,7 +1,6 @@
 package com.example.skipassselector;
 
 import android.support.v4.app.Fragment; 
-import android.content.Context;
 import android.os.Bundle;
 
 import android.view.LayoutInflater;
@@ -25,15 +24,21 @@ public class ResultsFragment extends Fragment{
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		View fragView = inflater.inflate(R.layout.results_fragment_layout,container, false);
-
 		return fragView;
 	}
 	
-	public void setText(Context context, String text) {
-		
-		//String text = (String) context.getText(R.string.title_section2);
-		TextView textView = (TextView)getView().findViewById(R.id.seasonPassResultsText);
+	public void setText(int id, String text) {
+		TextView textView = (TextView)getView().findViewById(id);
 		textView.setText(text);
+	}
+	
+	@Override
+	public void onResume() {
+		super.onResume();
+		TextView seasonPassTextView = (TextView)getView().findViewById(R.id.seasonPassResultsText);
+		seasonPassTextView.setText("449");
+		TextView windowRateTextView = (TextView)getView().findViewById(R.id.windowRateResultsText);
+		windowRateTextView.setText(Integer.toString(MainActivity.getWindowRateTotal()));
 	}
 	
 	

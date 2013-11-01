@@ -9,14 +9,5 @@
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="match_parent" />
-    <fragment android:name="com.example.skipassselector.ChartFragment"
-            android:id="@+id/Chart_Fragment"
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:layout_height="match_parent" />
-    <fragment android:name="com.example.skipassselector.ResultsFragment"
-            android:id="@+id/Results_Fragment"
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:layout_height="match_parent" />
+ 
 </android.support.v4.view.ViewPager>
