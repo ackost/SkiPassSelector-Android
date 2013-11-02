@@ -1,6 +1,7 @@
 package com.example.skipassselector;
 
 import org.achartengine.ChartFactory;
+import org.achartengine.GraphicalView;
 import org.achartengine.chart.BarChart.Type;
 import org.achartengine.model.CategorySeries;
 import org.achartengine.model.XYMultipleSeriesDataset;
@@ -8,11 +9,10 @@ import org.achartengine.renderer.XYMultipleSeriesRenderer;
 import org.achartengine.renderer.XYSeriesRenderer;
 
 import android.content.Context;
-import android.view.View;
 
 public class BarGraph {
 
-		public View getView(Context context)
+		public GraphicalView getView(Context context)
 		{
 			// This block of acrobatics is necessary to transform the HashSet to an array
 	//		HashSet<Integer> hs = MainActivity.getDatesSet(); 
@@ -21,13 +21,12 @@ public class BarGraph {
 	//		arrList.toArray(y);
 			
 			float wr = MainActivity.getWindowRateTotal();
-	//		float ac = MainActivity.getAcRateTotal();
-			// put ncc here
-			// put ncc+ac here
-			float sp = 449;
+			float ac = MainActivity.getAcRateTotal();
+			float ncc = MainActivity.getNccRateTotal();
+			float nccAc = MainActivity.getNccAcRateTotal();
 			
 			
-			float[] y = {sp,100,200,300,wr};
+			float[] y = {(float) 449.00, ac, ncc, nccAc, wr};
 			
 			CategorySeries series = new CategorySeries("Demo_bar_graph");
 			
@@ -43,7 +42,7 @@ public class BarGraph {
 			mRenderer.addSeriesRenderer(renderer);
 			
 			//TODO: change type to STACKED
-			View barGraphView = ChartFactory.getBarChartView(context, dataset, mRenderer, Type.DEFAULT);
+			GraphicalView barGraphView = ChartFactory.getBarChartView(context, dataset, mRenderer, Type.DEFAULT);
 							
 			return barGraphView;
 		}

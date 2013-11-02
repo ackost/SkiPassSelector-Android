@@ -50,7 +50,7 @@
         android:text="NCC with AC" />
 
     <TextView
-        android:id="@+id/nccAcTextResults"
+        android:id="@+id/nccAcResultsText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10" 

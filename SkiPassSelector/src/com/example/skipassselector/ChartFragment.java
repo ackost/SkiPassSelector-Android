@@ -1,5 +1,7 @@
 package com.example.skipassselector;
 
+import org.achartengine.GraphicalView;
+
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -27,12 +29,24 @@ public class ChartFragment extends Fragment {
 		View fragView = inflater.inflate(R.layout.chart_fragment_layout,container, false);
 		
 		BarGraph bg = new BarGraph();
-		View bgView = bg.getView(getActivity());
+		GraphicalView bgView = bg.getView(getActivity());
 		
 		ViewGroup chartContainer = (ViewGroup)fragView.findViewById(R.id.chart_container);
 		chartContainer.addView(bgView);
 		
 		return fragView;
+	}
+	
+	@Override
+	public void onResume(){
+		super.onResume();
+		
+		BarGraph bg = new BarGraph();
+		GraphicalView bgView = bg.getView(getActivity());
+		
+		ViewGroup chartContainer = (ViewGroup)getView().findViewById(R.id.chart_container);
+		chartContainer.addView(bgView);
+		
 	}
 	
 //	public View refreshChart(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){

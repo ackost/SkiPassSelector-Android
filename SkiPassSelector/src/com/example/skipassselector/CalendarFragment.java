@@ -23,9 +23,10 @@ public class CalendarFragment extends Fragment {
 	public static final String ARG_SECTION_NUMBER = "section_number";
 	
 	private String mdy;
+	String esf = null;
 	
 	public interface OnTicketChangedListener {
-		public void onTicketChangedListener();  //what to add in here?
+		public void onTicketChangedListener();  
 	}
 
 	OnTicketChangedListener mListener;
@@ -51,8 +52,6 @@ public class CalendarFragment extends Fragment {
 		final PopupMenu popupMenuWknd = new PopupMenu(getActivity(), anchor);
 		popupMenuWknd.inflate(R.menu.ticket_menu);
 		
-		//TODO: maybe add pre-Jan 2nd as 3rd popup menu?
-		
 		calendarView.setOnDateChangeListener(new OnDateChangeListener() {
 	        @Override
 	        public void onSelectedDayChange(CalendarView view, int year, int month, int dayOfMonth) {
@@ -63,9 +62,12 @@ public class CalendarFragment extends Fragment {
 	        	String m = Integer.toString(month + 1);
 	        	String y = Integer.toString(year);
 	        	mdy = m + "/" + d + "/" + y;
-
-				Toast.makeText(getActivity(),  mdy, Toast.LENGTH_SHORT).show();
 	        	
+	        	if (month+1 > 9 || (month+1==1 && dayOfMonth < 3)){
+	        		esf = "_ESF";  
+	        	}
+	        	
+				Toast.makeText(getActivity(),  mdy, Toast.LENGTH_SHORT).show();
 	        	
 	        	int dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK);
 	        	if (dayOfWeek == 1 || dayOfWeek == 7) {  // 1 = Sunday, 7 = Saturday            	
@@ -92,7 +94,7 @@ public class CalendarFragment extends Fragment {
 					MainActivity.datesAndTickets.put(mdy, "ALL_DAY_MW");
 					break;
 				case R.id.night:
-					MainActivity.datesAndTickets.put(mdy, "NIGHT_MW");
+					MainActivity.datesAndTickets.put(mdy, "NIGHT_MW" + esf);
 					break;
 				case R.id.remove:
 					MainActivity.datesAndTickets.remove(mdy);
@@ -127,7 +129,7 @@ public class CalendarFragment extends Fragment {
 					MainActivity.datesAndTickets.put(mdy, "ALL_DAY_WKND");
 					break;
 				case R.id.night:					
-					MainActivity.datesAndTickets.put(mdy, "NIGHT_WKND");
+					MainActivity.datesAndTickets.put(mdy, "NIGHT_WKND" + esf);
 					break;
 				case R.id.remove:
 					MainActivity.datesAndTickets.remove(mdy);

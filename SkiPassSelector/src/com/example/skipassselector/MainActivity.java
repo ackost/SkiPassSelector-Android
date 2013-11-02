@@ -5,7 +5,6 @@ import java.util.Locale;
 
 import android.app.ActionBar;
 import android.app.FragmentTransaction;
-import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -13,6 +12,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.example.skipassselector.CalendarFragment.OnTicketChangedListener;
@@ -38,7 +38,7 @@ public class MainActivity extends FragmentActivity implements
 	
 	//HashMap uses dates as keys, ticket types as values
 	public static HashMap<String, String> datesAndTickets = new HashMap<String, String>();
-			
+	public static boolean earlyPassPriceFlag = true;		
 	static TicketSets ticketsets;  //enum of ticket names
 	
 	
@@ -101,6 +101,30 @@ public class MainActivity extends FragmentActivity implements
 		getMenuInflater().inflate(R.menu.main, menu);
 		return true;
 	}
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()){
+		case R.id.reset_button:
+			datesAndTickets.clear();
+			Toast.makeText(MainActivity.this, "All dates cleared", Toast.LENGTH_SHORT).show();
+			return true;
+		case R.id.action_settings:
+			//
+			return true;
+		case R.id.earlyPassFlagItem:
+			if (item.isChecked()) {
+				item.setChecked(false);
+				earlyPassPriceFlag=false;
+			} else {
+				item.setChecked (true);
+				earlyPassPriceFlag=true;
+			}
+			return true;
+		default:
+			return super.onOptionsItemSelected(item);
+		}
+	}
 
 	@Override
 	public void onTabSelected(ActionBar.Tab tab,
@@ -120,12 +144,15 @@ public class MainActivity extends FragmentActivity implements
 			FragmentTransaction fragmentTransaction) {
 	}
 
-
-	public static int getWindowRateTotal() {
-		return ticketMath_WindowRate();
+	public static int getSeasonPassTotal() {
+		if (earlyPassPriceFlag) {
+			 return 449; 
+		} else {
+			return 649;
+		}
 	}
 	
-	public static int ticketMath_WindowRate() {
+	public static int getWindowRateTotal() {
 		// returns the sum of all tickets * rates, at full price
 		int fhmwDays = 0;
 		int ehmwDays = 0;
@@ -145,7 +172,7 @@ public class MainActivity extends FragmentActivity implements
 				ehmwDays++;
 			if (s.equals("ALL_DAY_MW"))
 				admwDays++;
-			if (s.equals("NIGHT_MW"))
+			if (s.startsWith("NIGHT_MW"))  //counts both Early Season Flag and non-ESF night tickets
 				nmwDays++;
 			if (s.equals("FOUR_HOUR_WKND"))
 				fhwkndDays++;
@@ -153,7 +180,7 @@ public class MainActivity extends FragmentActivity implements
 				ehwkndDays++;
 			if (s.equals("ALL_DAY_WKND"))
 				adwkndDays++;
-			if (s.equals("NIGHT_WKND"))
+			if (s.startsWith("NIGHT_WKND"))  //counts both Early Season Flag and non-ESF night tickets
 				nwkndDays++;
 		}
 		
@@ -165,10 +192,6 @@ public class MainActivity extends FragmentActivity implements
 	}
 	
 	public static float getAcRateTotal() {
-		return ticketMath_AdvantageCard();
-	}
-	
-	public static float ticketMath_AdvantageCard() {
 		// returns the sum tickets * rates, at advantage card rates, after removing 1 of every 6 days 
 		
 		int fhmwDays = 0;
@@ -180,10 +203,8 @@ public class MainActivity extends FragmentActivity implements
 		int adwkndDays = 0;
 		int nwkndDays = 0;
 		
-		//TODO: put an IF here to determine if early price should be used
-		// if (not early flag = true) {
-		//float total = 119; } else {
-		float total = 84;
+		int reduceDays = 0;
+		float total = 0;
 		
 		for (String s : datesAndTickets.values()){
 			if (s.equals("FOUR_HOUR_MW"))
@@ -192,7 +213,7 @@ public class MainActivity extends FragmentActivity implements
 				ehmwDays++;
 			if (s.equals("ALL_DAY_MW"))
 				admwDays++;
-			if (s.equals("NIGHT_MW"))
+			if (s.startsWith("NIGHT_MW"))  // counts both Early Season Flag and non-ESF night tickets
 				nmwDays++;
 			if (s.equals("FOUR_HOUR_WKND"))
 				fhwkndDays++;
@@ -200,7 +221,7 @@ public class MainActivity extends FragmentActivity implements
 				ehwkndDays++;
 			if (s.equals("ALL_DAY_WKND"))
 				adwkndDays++;
-			if (s.equals("NIGHT_WKND"))
+			if (s.startsWith("NIGHT_WKND"))  // counts both Early Season Flag and non-ESF night tickets
 				nwkndDays++;
 		}
 		
@@ -222,27 +243,152 @@ public class MainActivity extends FragmentActivity implements
 		}
 		//find how many free days, and remove that number of days from the first available ticket type 
 		if (dayCountSum >= 6) {
-			int reduceDays = dayCountSum / 6;
-			for (int k = 0; k < daysCountArray.length; k++) {	
-				while (reduceDays > 0 && daysCountArray[k] > 0) {   //as long as there are tickets that need to be removed, 
-					daysCountArray[k] = daysCountArray[k]--;        //and there are tickets of this type available to subtract,
-					reduceDays = reduceDays--;						//reduce both values by 1 (at a time)
-				}
-				//now do the math to find the window rate cost of remaining tickets
-				total = total + (daysCountArray[k] * ratesArray[k]);	 
-				// now reduce total by advantage card discount (40%)
-				total = (float) (total * 0.6);
-			}
+			reduceDays = dayCountSum / 6;
 		}
+		
+		for (int k = 0; k < daysCountArray.length; k++) {	
+			while (reduceDays > 0 && daysCountArray[k] > 0) {   //as long as there are tickets that need to be removed, 
+				daysCountArray[k] = daysCountArray[k]--;        //and there are tickets of this type available to subtract,
+				reduceDays = reduceDays--;						//reduce both values by 1 (at a time)
+			}
+			//now do the math to find the window rate cost of remaining tickets
+			total = total + (daysCountArray[k] * ratesArray[k]);	 
 			
+			
+		}
+		// now reduce total by advantage card discount (40%)
+		total = (float) (total * 0.6);
+		
+		if (earlyPassPriceFlag) {
+			 total = total + 84; 
+		} else {
+			total =  total + 119;
+		}
 		return total;
 	}
 	
-	//TODO: public static float getNccRateTotal()
-	//TODO: public static float ticketMath_Ncc(...)
-	//TODO: public static float getNccAcRateTotal()
-	//TODO: public static float ticketMathNccAc(...)
+	public static float getNccRateTotal(){
+		// Night tickets after Jan 2nd are free
+		// other tickets are at window rate
+		int fhmwDays = 0;
+		int ehmwDays = 0;
+		int admwDays = 0;
+		int nmwDays = 0;
+		int fhwkndDays = 0;
+		int ehwkndDays = 0;
+		int adwkndDays = 0;
+		int nwkndDays = 0;
+		
+		int total = 0;
+		
+		for (String s : datesAndTickets.values()){
+			if (s.equals("FOUR_HOUR_MW"))
+				fhmwDays++;
+			if (s.equals("EIGHT_HOUR_MW"))
+				ehmwDays++;
+			if (s.equals("ALL_DAY_MW"))
+				admwDays++;
+			if (s.equals("NIGHT_MW_ESF"))   //night tickets without early season flag are free
+				nmwDays++;
+			if (s.equals("FOUR_HOUR_WKND"))
+				fhwkndDays++;
+			if (s.equals("EIGHT_HOUR_WKND"))
+				ehwkndDays++;
+			if (s.equals("ALL_DAY_WKND"))
+				adwkndDays++;
+			if (s.equals("NIGHT_WKND_ESF"))  //night tickets without early season flag are free
+				nwkndDays++;
+		}
+		
+		total = (fhmwDays * 50) + (ehmwDays * 55) + (admwDays * 64) + (nmwDays * 42) +
+				(fhwkndDays * 60) + (ehwkndDays * 67) + (adwkndDays * 71) + (nwkndDays * 42);
+		
+		if (earlyPassPriceFlag) {
+			 total = total + 179; 
+		} else {
+			total =  total + 204;
+		}
+		
+		return total;
+	};
 	
+	public static float getNccAcRateTotal(){
+		//night tickets after Jan 2nd are free
+		//non-night tickets and any tickets before Jan 2nd are 40%
+		//every 6th ticket (not counting nights after Jan 2nd) is free
+		int fhmwDays = 0;
+		int ehmwDays = 0;
+		int admwDays = 0;
+		int nmwDays = 0;
+		int fhwkndDays = 0;
+		int ehwkndDays = 0;
+		int adwkndDays = 0;
+		int nwkndDays = 0;
+		
+		int reduceDays = 0;
+		float total = 0;
+		
+		//gets counts of all tickets excepts Nights after Jan 2nd
+		for (String s : datesAndTickets.values()){
+			if (s.equals("FOUR_HOUR_MW"))
+				fhmwDays++;
+			if (s.equals("EIGHT_HOUR_MW"))
+				ehmwDays++;
+			if (s.equals("ALL_DAY_MW"))
+				admwDays++;
+			if (s.equals("NIGHT_MW_ESF"))
+				nmwDays++;
+			if (s.equals("FOUR_HOUR_WKND"))
+				fhwkndDays++;
+			if (s.equals("EIGHT_HOUR_WKND"))
+				ehwkndDays++;
+			if (s.equals("ALL_DAY_WKND"))
+				adwkndDays++;
+			if (s.equals("NIGHT_WKND_ESF"))
+				nwkndDays++;
+		}
+		
+		int[] daysCountArray = {fhmwDays, ehmwDays, admwDays, nmwDays, fhwkndDays, ehwkndDays, adwkndDays, nwkndDays};
+		int[] ratesArray = {50, 55, 64, 42, 60, 67, 71, 42};
+		
+		//if any single ticket types have more than 6, reduce free days from those ticket types first
+		for (int i = 0; i < daysCountArray.length; i++) {
+			if (daysCountArray[i] >= 6) {
+				daysCountArray[i] = daysCountArray[i] - (daysCountArray[i] / 6);
+			}
+		}
+		
+		//if (after any reductions above) the total days of tickets is more than 6, reduce free days (indiscriminately)
+		int dayCountSum = 0;
+		//first, add up the days from all categories
+		for (int j : daysCountArray) {
+			dayCountSum = dayCountSum + j;
+		}
+		//find how many free days, and remove that number of days from the first available ticket type 
+		if (dayCountSum >= 6) {
+			reduceDays = dayCountSum / 6;
+		}
+		
+		for (int k = 0; k < daysCountArray.length; k++) {	
+			while (reduceDays > 0 && daysCountArray[k] > 0) {   //as long as there are tickets that need to be removed, 
+				daysCountArray[k] = daysCountArray[k]--;        //and there are tickets of this type available to subtract,
+				reduceDays = reduceDays--;						//reduce both values by 1 (at a time)
+			}
+			//now do the math to find the window rate cost of remaining tickets
+			total = total + (daysCountArray[k] * ratesArray[k]);	 
+		}
+		
+		// now reduce total by advantage card discount (40%)
+		total = (float) (total * 0.6);
+		
+		if (earlyPassPriceFlag) {
+			 total = total + 199; 
+		} else {
+			total =  total + 224;
+		}
+			
+		return total;
+	};
 	
 	/**
 	 * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
@@ -315,13 +461,12 @@ public class MainActivity extends FragmentActivity implements
 		
 		String tMessage = "Just testing this listener";
 		Toast.makeText(MainActivity.this, tMessage, Toast.LENGTH_SHORT).show();
-
-			
+	
+		FragmentManager fragmentManager = getSupportFragmentManager();
+		android.support.v4.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+		ChartFragment cf = new ChartFragment();
+		fragmentTransaction.replace(R.id.chart_container, cf);
+		fragmentTransaction.commit();	
 	}
-
-	
-	
-	
-	
-
+		
 }
