@@ -17,12 +17,12 @@
         <requestFocus />
         
         <TextView
-            android:id="@+id/TextView_legend"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentLeft="true"
-            android:gravity="center"
-            android:text="@string/legend" />
+        android:id="@+id/TextView_legend"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:gravity="center"
+        android:text="@string/footer" />
 
 </RelativeLayout>

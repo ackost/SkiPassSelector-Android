@@ -3,6 +3,8 @@ package com.example.skipassselector;
 import java.util.HashMap;
 import java.util.Locale;
 
+import org.achartengine.GraphicalView;
+
 import android.app.ActionBar;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
@@ -13,6 +15,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.example.skipassselector.CalendarFragment.OnTicketChangedListener;
@@ -62,7 +65,7 @@ public class MainActivity extends FragmentActivity implements
 		//Create initial ResultsFragment and put it in the ViewPager
 		ResultsFragment firstRF = new ResultsFragment();
 		firstRF.setArguments(getIntent().getExtras());
-		getSupportFragmentManager().beginTransaction().add(R.id.pager, firstRF, "tag_123").commit();
+		getSupportFragmentManager().beginTransaction().add(R.id.pager, firstRF).commit();
 		
 		//Create initial ChartFragment and put it in the ViewPager
 		ChartFragment firstCF = new ChartFragment();
@@ -110,7 +113,7 @@ public class MainActivity extends FragmentActivity implements
 			Toast.makeText(MainActivity.this, "All dates cleared", Toast.LENGTH_SHORT).show();
 			return true;
 		case R.id.action_settings:
-			//
+			//TODO: take out settings menu?
 			return true;
 		case R.id.earlyPassFlagItem:
 			if (item.isChecked()) {
@@ -146,7 +149,7 @@ public class MainActivity extends FragmentActivity implements
 
 	public static int getSeasonPassTotal() {
 		if (earlyPassPriceFlag) {
-			 return 449; 
+			return 449; 
 		} else {
 			return 649;
 		}
@@ -461,12 +464,10 @@ public class MainActivity extends FragmentActivity implements
 		
 		String tMessage = "Just testing this listener";
 		Toast.makeText(MainActivity.this, tMessage, Toast.LENGTH_SHORT).show();
+		
 	
-		FragmentManager fragmentManager = getSupportFragmentManager();
-		android.support.v4.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-		ChartFragment cf = new ChartFragment();
-		fragmentTransaction.replace(R.id.chart_container, cf);
-		fragmentTransaction.commit();	
+		
+		
 	}
 		
 }

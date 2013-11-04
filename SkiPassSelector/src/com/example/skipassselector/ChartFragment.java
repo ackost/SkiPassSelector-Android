@@ -1,12 +1,12 @@
 package com.example.skipassselector;
 
 import org.achartengine.GraphicalView;
-
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 public class ChartFragment extends Fragment {
 	/**
@@ -14,6 +14,8 @@ public class ChartFragment extends Fragment {
 	 * fragment.
 	 */
 	public static final String ARG_SECTION_NUMBER = "section_number";
+	
+	private BarGraph bg;
 	
 	public ChartFragment() {
 	}
@@ -27,40 +29,22 @@ public class ChartFragment extends Fragment {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		View fragView = inflater.inflate(R.layout.chart_fragment_layout,container, false);
-		
-		BarGraph bg = new BarGraph();
-		GraphicalView bgView = bg.getView(getActivity());
-		
-		ViewGroup chartContainer = (ViewGroup)fragView.findViewById(R.id.chart_container);
-		chartContainer.addView(bgView);
-		
+		bg = new BarGraph();
 		return fragView;
 	}
 	
+		
 	@Override
-	public void onResume(){
+	public void onResume() {
 		super.onResume();
+
+		LinearLayout chartContainer = (LinearLayout)getView().findViewById(R.id.chart_container);
 		
-		BarGraph bg = new BarGraph();
-		GraphicalView bgView = bg.getView(getActivity());
-		
-		ViewGroup chartContainer = (ViewGroup)getView().findViewById(R.id.chart_container);
+		GraphicalView bgView = bg.getView(getActivity(), bg.addNewSeries("fromResume"));
 		chartContainer.addView(bgView);
 		
+
 	}
-	
-//	public View refreshChart(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
-//		View fragView = inflater.inflate(R.layout.chart_fragment_layout,container, false);
-//		
-//		BarGraph bg = new BarGraph();
-//		View bgView = bg.getView(getActivity());
-//		
-//		ViewGroup chartContainer = (ViewGroup)fragView.findViewById(R.id.chart_container);
-//		chartContainer.addView(bgView);
-//		
-//		return fragView;
-//
-//	}
 	
 }
 	

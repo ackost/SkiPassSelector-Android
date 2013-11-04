@@ -9,5 +9,5 @@
     <string name="title_section2">Results</string>
     <string name="title_section3">Graph</string>
     <string name="legend">N = night, A = all day, 4 = 4 hr, 8 = 8hr </string>
-
+	<string name="footer">Tap a day, then select a ticket type</string>
 </resources>

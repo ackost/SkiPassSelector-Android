@@ -3,47 +3,90 @@ package com.example.skipassselector;
 import org.achartengine.ChartFactory;
 import org.achartengine.GraphicalView;
 import org.achartengine.chart.BarChart.Type;
-import org.achartengine.model.CategorySeries;
 import org.achartengine.model.XYMultipleSeriesDataset;
+import org.achartengine.model.XYSeries;
 import org.achartengine.renderer.XYMultipleSeriesRenderer;
 import org.achartengine.renderer.XYSeriesRenderer;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.Paint.Align;
+
+
 
 public class BarGraph {
 
-		public GraphicalView getView(Context context)
-		{
-			// This block of acrobatics is necessary to transform the HashSet to an array
-	//		HashSet<Integer> hs = MainActivity.getDatesSet(); 
-	//		ArrayList<Integer> arrList = new ArrayList<Integer>(hs);
-	//		Integer[] y = new Integer[arrList.size()];
-	//		arrList.toArray(y);
-			
-			float wr = MainActivity.getWindowRateTotal();
-			float ac = MainActivity.getAcRateTotal();
-			float ncc = MainActivity.getNccRateTotal();
-			float nccAc = MainActivity.getNccAcRateTotal();
-			
-			
-			float[] y = {(float) 449.00, ac, ncc, nccAc, wr};
-			
-			CategorySeries series = new CategorySeries("Demo_bar_graph");
-			
-			for (int i = 0; i < y.length; i++) {
-				series.add("Ticket type " + (i + 1), y[i]);
-			}
+		public GraphicalView getView(Context context,XYSeries series)
+		{		
 			
 			XYMultipleSeriesDataset dataset = new XYMultipleSeriesDataset();
-			dataset.addSeries(series.toXYSeries());
+			dataset.clear();
+			dataset.addSeries(series);
 			
 			XYMultipleSeriesRenderer mRenderer = new XYMultipleSeriesRenderer();
+			mRenderer.setChartTitle("Ticket Cost Comparison");
+	        mRenderer.setXTitle("Ticket options");
+	        mRenderer.setYTitle("Total cost ($)");
+	        mRenderer.setAxesColor(Color.BLACK);
+	        mRenderer.setApplyBackgroundColor(true);
+	        mRenderer.setBackgroundColor(Color.WHITE);
+	        mRenderer.setMarginsColor(Color.WHITE);
+	        mRenderer.setZoomEnabled(true);
+	        mRenderer.setBarSpacing(.5);
+	        mRenderer.setMargins(new int[] {30, 50, 20, 15});
+	        mRenderer.setShowLegend(false);
+	        mRenderer.setAxisTitleTextSize(16);
+	        mRenderer.setChartTitleTextSize(20);
+	        mRenderer.setLabelsTextSize(18);
+	        mRenderer.addXTextLabel(1, "SP");
+	        mRenderer.addXTextLabel(2, "AC");
+	        mRenderer.addXTextLabel(3, "NCC");
+	        mRenderer.addXTextLabel(4, "NCC + AC");
+	        mRenderer.addXTextLabel(5, "Window");
+	        mRenderer.setXLabels(0);
+	        mRenderer.setBarWidth(50);
+	        mRenderer.setXAxisMin(.5);
+	        mRenderer.setXAxisMax(5.5);
+	        mRenderer.setYAxisMin(0);
+	        mRenderer.setYLabelsAlign(Align.RIGHT);
+	        mRenderer.setLabelsColor(Color.BLACK);
+	        mRenderer.setXLabelsColor(Color.BLACK);
+	        mRenderer.setYLabelsColor(0, Color.BLACK);
+	        
 			XYSeriesRenderer renderer = new XYSeriesRenderer();
+			renderer.setChartValuesTextSize(16);
+			renderer.setDisplayChartValues(true);
+			renderer.setGradientEnabled(true);
+			renderer.setGradientStart(0, Color.GREEN);
+			renderer.setGradientStop(300, Color.BLUE);
+			
 			mRenderer.addSeriesRenderer(renderer);
 			
-			//TODO: change type to STACKED
 			GraphicalView barGraphView = ChartFactory.getBarChartView(context, dataset, mRenderer, Type.DEFAULT);
-							
+			
 			return barGraphView;
+		}
+		
+		public XYSeries addNewSeries(String seriesLabel) {
+			float sp = 0;
+			float ac = 0;
+			float ncc = 0;
+			float nccAc = 0;
+			float wr = 0;
+			
+			sp = MainActivity.getSeasonPassTotal();
+			ac = MainActivity.getAcRateTotal();
+			ncc = MainActivity.getNccRateTotal();
+			nccAc = MainActivity.getNccAcRateTotal();
+			wr = MainActivity.getWindowRateTotal();
+			
+			float[] y = {sp, ac, ncc, nccAc, wr};
+			
+			XYSeries series = new XYSeries(seriesLabel);
+			
+			for (int i = 0; i < y.length; i++) {
+				series.add((i + 1), y[i]);
+			}
+			return series;
 		}
 }

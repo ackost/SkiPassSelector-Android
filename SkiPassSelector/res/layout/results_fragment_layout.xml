@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
@@ -8,65 +8,106 @@
         android:id="@+id/seasonPassText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="18dp"
+        android:layout_marginLeft="18dp"
+        android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Season Pass" />
-
     <TextView
         android:id="@+id/seasonPassResultsText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:ems="10" 
-        android:text=""/>
+        android:layout_alignBaseline="@+id/seasonPassText"
+        android:layout_alignBottom="@+id/seasonPassText"
+        android:layout_toRightOf="@+id/seasonPassText"
+        android:layout_marginLeft="60dp"
+        android:textColor="@color/blue"
+        android:ems="20" />
 
     <TextView
         android:id="@+id/advantageCardText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Advantage Card" />
-
+        android:layout_below="@+id/seasonPassText"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="18dp"
+        android:layout_alignParentLeft="true"
+        android:text="Advantage Card"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
     <TextView
         android:id="@+id/advantageCardResultsText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:ems="10" 
-        android:text=""/>
+        android:layout_alignBaseline="@+id/advantageCardText"
+        android:layout_alignBottom="@+id/advantageCardText"
+        android:layout_toRightOf="@+id/advantageCardText"
+        android:layout_alignLeft="@+id/seasonPassResultsText"
+        android:textColor="@color/blue"
+        android:ems="10" />  
 
     <TextView
         android:id="@+id/nightClubText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Night Club Card" />
-
-    <TextView
+        android:layout_below="@+id/advantageCardText"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="18dp"
+        android:layout_alignParentLeft="true"
+        android:text="Night Club Card"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+   <TextView
         android:id="@+id/nightClubResultsText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:ems="10" 
-        android:text=""/>
+        android:layout_alignBaseline="@+id/nightClubText"
+        android:layout_alignBottom="@+id/nightClubText"
+        android:layout_toRightOf="@+id/nightClubText"
+        android:layout_alignLeft="@+id/seasonPassResultsText"
+        android:textColor="@color/blue"
+        android:ems="10" />
 
     <TextView
         android:id="@+id/nccAcText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="NCC with AC" />
-
+        android:layout_below="@+id/nightClubText"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="18dp"
+        android:layout_alignParentLeft="true"
+        android:text="NCC with AC"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
     <TextView
         android:id="@+id/nccAcResultsText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:ems="10" 
-        android:text=""/>
-
+        android:layout_alignBaseline="@+id/nccAcText"
+        android:layout_alignBottom="@+id/nccAcText"
+        android:layout_toRightOf="@+id/nccAcText"
+        android:layout_alignLeft="@+id/seasonPassResultsText"
+        android:textColor="@color/blue"
+        android:ems="10" />
+    
     <TextView
         android:id="@+id/windowRateText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Window Rate" />
-
+        android:layout_below="@+id/nccAcText"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="18dp"
+        android:layout_alignParentLeft="true"
+        android:text="Window Rate"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
     <TextView
         android:id="@+id/windowRateResultsText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:ems="10" 
-        android:text=""/>
+        android:layout_toRightOf="@+id/windowRateText"
+        android:layout_alignBaseline="@+id/windowRateText"
+        android:layout_alignBottom="@+id/windowRateText"
+        android:layout_alignLeft="@+id/seasonPassResultsText"
+        android:textColor="@color/blue"
+        android:ems="10" />
+       
 
-</LinearLayout>
+</RelativeLayout>
