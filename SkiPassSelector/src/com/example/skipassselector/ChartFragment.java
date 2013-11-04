@@ -1,6 +1,11 @@
 package com.example.skipassselector;
 
+import java.text.Format;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import org.achartengine.GraphicalView;
+
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -16,6 +21,7 @@ public class ChartFragment extends Fragment {
 	public static final String ARG_SECTION_NUMBER = "section_number";
 	
 	private BarGraph bg;
+	private GraphicalView bgView;
 	
 	public ChartFragment() {
 	}
@@ -38,12 +44,23 @@ public class ChartFragment extends Fragment {
 	public void onResume() {
 		super.onResume();
 
-		LinearLayout chartContainer = (LinearLayout)getView().findViewById(R.id.chart_container);
+		System.out.println("ChartFragment onResume called");
 		
-		GraphicalView bgView = bg.getView(getActivity(), bg.addNewSeries("fromResume"));
+		LinearLayout chartContainer = (LinearLayout)getView().findViewById(R.id.chart_container);
+		Date dateStamp = new java.util.Date();
+		Format formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		String ds = formatter.format(dateStamp);
+		System.out.println("ds = " + ds);
+		bgView = bg.getView(getActivity(), bg.addNewSeries(ds));
 		chartContainer.addView(bgView);
 		
 
+	}
+	
+	@Override
+	public void onPause() {
+		super.onPause();
+		System.out.println("ChartFragment paused");
 	}
 	
 }

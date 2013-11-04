@@ -11,6 +11,7 @@ import org.achartengine.renderer.XYSeriesRenderer;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Paint.Align;
+import android.widget.Toast;
 
 
 
@@ -21,7 +22,9 @@ public class BarGraph {
 			
 			XYMultipleSeriesDataset dataset = new XYMultipleSeriesDataset();
 			dataset.clear();
-			dataset.addSeries(series);
+			XYSeries s = new XYSeries("newS");
+			s = series;
+			dataset.addSeries(s);
 			
 			XYMultipleSeriesRenderer mRenderer = new XYMultipleSeriesRenderer();
 			mRenderer.setChartTitle("Ticket Cost Comparison");
@@ -68,6 +71,8 @@ public class BarGraph {
 		}
 		
 		public XYSeries addNewSeries(String seriesLabel) {
+			System.out.println("BarGraph addNewSeries called");
+			
 			float sp = 0;
 			float ac = 0;
 			float ncc = 0;
@@ -81,6 +86,13 @@ public class BarGraph {
 			wr = MainActivity.getWindowRateTotal();
 			
 			float[] y = {sp, ac, ncc, nccAc, wr};
+			
+			System.out.println("sp = " + sp);
+			System.out.println("ac = " + ac);
+			System.out.println("ncc = " + ncc);
+			System.out.println("nccAc = " + nccAc);
+			System.out.println("wr = " + wr);
+			
 			
 			XYSeries series = new XYSeries(seriesLabel);
 			

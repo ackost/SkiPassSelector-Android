@@ -2,7 +2,6 @@ package com.example.skipassselector;
 
 import android.support.v4.app.Fragment; 
 import android.os.Bundle;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,7 +9,10 @@ import android.widget.TextView;
 
 
 public class ResultsFragment extends Fragment{
-
+	/**
+	 * The fragment argument representing the section number for this
+	 * fragment.
+	 */
 	public static final String ARG_SECTION_NUMBER = "section_number";
 	
 	public ResultsFragment() {
@@ -35,6 +37,9 @@ public class ResultsFragment extends Fragment{
 	@Override
 	public void onResume() {
 		super.onResume();
+		
+		System.out.println("ResultsFragment onResume called");
+		
 		TextView seasonPassTextView = (TextView)getView().findViewById(R.id.seasonPassResultsText);
 		seasonPassTextView.setText("$" + Integer.toString(MainActivity.getSeasonPassTotal()) + ".00");
 		
@@ -50,6 +55,12 @@ public class ResultsFragment extends Fragment{
 		TextView NccAcRateTextView = (TextView)getView().findViewById(R.id.nccAcResultsText);
 		NccAcRateTextView.setText("$" + String.format("%.2f", MainActivity.getNccAcRateTotal()));
 		
+	}
+	
+	@Override
+	public void onPause() {
+		super.onPause();
+		System.out.println("ResultsFragment paused");
 	}
 	
 	

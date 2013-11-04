@@ -3,6 +3,7 @@ package com.example.skipassselector;
 import java.util.Calendar;
 
 
+
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -161,6 +162,18 @@ public class CalendarFragment extends Fragment {
 		} catch (ClassCastException e) {
 			throw new ClassCastException(activity.toString() +" must implement OnTicketChangedListener");
 		}
+	}
+	
+	@Override
+	public void onPause() {
+		super.onPause();
+		System.out.println("CalendarFragment paused");
+	}
+	
+	@Override
+	public void onResume() {
+		super.onResume();
+		System.out.println("CalendarFragment resumed");
 	}
 	
 }

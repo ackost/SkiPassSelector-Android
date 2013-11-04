@@ -62,18 +62,6 @@ public class MainActivity extends FragmentActivity implements
 		mViewPager = (ViewPager) findViewById(R.id.pager);
 		mViewPager.setAdapter(mSectionsPagerAdapter);
 
-		//Create initial ResultsFragment and put it in the ViewPager
-		ResultsFragment firstRF = new ResultsFragment();
-		firstRF.setArguments(getIntent().getExtras());
-		getSupportFragmentManager().beginTransaction().add(R.id.pager, firstRF).commit();
-		
-		//Create initial ChartFragment and put it in the ViewPager
-		ChartFragment firstCF = new ChartFragment();
-		firstCF.setArguments(getIntent().getExtras());
-		getSupportFragmentManager().beginTransaction().add(R.id.pager, firstCF).commit();
-		
-		
-		
 		// When swiping between different sections, select the corresponding
 		// tab. We can also use ActionBar.Tab#select() to do this if we have
 		// a reference to the Tab.
@@ -111,6 +99,7 @@ public class MainActivity extends FragmentActivity implements
 		case R.id.reset_button:
 			datesAndTickets.clear();
 			Toast.makeText(MainActivity.this, "All dates cleared", Toast.LENGTH_SHORT).show();
+			//TODO: make change instantly apparent from any tab
 			return true;
 		case R.id.action_settings:
 			//TODO: take out settings menu?
@@ -135,6 +124,7 @@ public class MainActivity extends FragmentActivity implements
 		// When the given tab is selected, switch to the corresponding page in
 		// the ViewPager.
 		mViewPager.setCurrentItem(tab.getPosition());
+		
 	}
 
 	@Override
@@ -413,13 +403,13 @@ public class MainActivity extends FragmentActivity implements
 				args.putInt(CalendarFragment.ARG_SECTION_NUMBER, position + 1);
 				fragment.setArguments(args);
 				return fragment;
-			case 1:
+			case 2:
 				Fragment fragment2 = new ChartFragment();
 				Bundle args2 = new Bundle();
 				args2.putInt(ChartFragment.ARG_SECTION_NUMBER, position + 1);
 				fragment2.setArguments(args2);
 				return fragment2;
-			case 2:
+			case 1:
 				Fragment fragment3 = new ResultsFragment();
 				Bundle args3 = new Bundle();
 				args3.putInt(ResultsFragment.ARG_SECTION_NUMBER, position + 1);
@@ -451,9 +441,9 @@ public class MainActivity extends FragmentActivity implements
 			case 0:
 				return getString(R.string.title_section1).toUpperCase(l);
 			case 1:
-				return getString(R.string.title_section3).toUpperCase(l);
-			case 2:
 				return getString(R.string.title_section2).toUpperCase(l);
+			case 2:
+				return getString(R.string.title_section3).toUpperCase(l);
 			}
 			return null;
 		}
@@ -462,8 +452,8 @@ public class MainActivity extends FragmentActivity implements
 	@Override
 	public void onTicketChangedListener() {
 		
-		String tMessage = "Just testing this listener";
-		Toast.makeText(MainActivity.this, tMessage, Toast.LENGTH_SHORT).show();
+	//	String tMessage = "Just testing this listener";
+	//	Toast.makeText(MainActivity.this, tMessage, Toast.LENGTH_SHORT).show();
 		
 	
 		
