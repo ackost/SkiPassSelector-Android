@@ -1,7 +1,5 @@
 package com.example.skipassselector;
 
-import java.math.BigDecimal;
-import java.text.DecimalFormat;
 import java.text.NumberFormat;
 
 import org.achartengine.ChartFactory;
@@ -15,7 +13,6 @@ import org.achartengine.renderer.XYSeriesRenderer;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Paint.Align;
-
 
 
 public class BarGraph {
@@ -65,7 +62,6 @@ public class BarGraph {
 			renderer.setChartValuesTextSize(16);
 			renderer.setDisplayChartValues(true);
 			renderer.setChartValuesFormat(numFormat);
-			//renderer.setChartValuesTextAlign(Align.CENTER);
 			renderer.setGradientEnabled(true);
 			renderer.setGradientStart(0, Color.GREEN);
 			renderer.setGradientStop(300, Color.BLUE);
@@ -78,7 +74,8 @@ public class BarGraph {
 		}
 		
 		public XYSeries addNewSeries(String seriesLabel) {
-			System.out.println("BarGraph addNewSeries called");
+			//debug console output
+			//System.out.println("BarGraph addNewSeries called");
 			
 			double sp = 0;
 			double ac = 0;
@@ -93,13 +90,15 @@ public class BarGraph {
 			wr = MainActivity.getWindowRateTotal();
 			
 			double[] y = {sp, ac, ncc, nccAc, wr};
-			
+	
+			// debug console output
+			/*
 			System.out.println("sp = " + sp);
 			System.out.println("ac = " + ac);
 			System.out.println("ncc = " + ncc);
 			System.out.println("nccAc = " + nccAc);
 			System.out.println("wr = " + wr);
-			
+			*/
 			
 			XYSeries series = new XYSeries(seriesLabel);
 			

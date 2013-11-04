@@ -39,9 +39,7 @@ public class MainActivity extends FragmentActivity implements
 	//HashMap uses dates as keys, ticket types as values
 	public static HashMap<String, String> datesAndTickets = new HashMap<String, String>();
 	public static boolean earlyPassPriceFlag = true;		
-	static TicketSets ticketsets;  //enum of ticket names
-	
-	
+		
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -123,9 +121,9 @@ public class MainActivity extends FragmentActivity implements
 		// the ViewPager.
 		
 		mViewPager.setCurrentItem(tab.getPosition());
-		System.out.println("TabSelected: " + (tab.getPosition()));
-	
 		
+		//debug console output
+		//System.out.println("TabSelected: " + (tab.getPosition()));	
 	}
 
 	@Override
@@ -444,7 +442,8 @@ public class MainActivity extends FragmentActivity implements
 
 	@Override
 	public void onTicketChangedListener() {
-		
+	
+	//  debug toast output
 	//	String tMessage = "Just testing this listener";
 	//	Toast.makeText(MainActivity.this, tMessage, Toast.LENGTH_SHORT).show();
 

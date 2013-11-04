@@ -104,12 +104,8 @@ public class CalendarFragment extends Fragment {
 		
 				mListener.onTicketChangedListener();
 				
+				//display quick popup message
 				Toast.makeText(getActivity(), tMessage, Toast.LENGTH_SHORT).show();
-				
-				
-				//Toast.makeText(getActivity(),  Integer.toString(MainActivity.datesAndTickets.size()), Toast.LENGTH_SHORT).show();
-				Toast.makeText(getActivity(),  Integer.toString(MainActivity.getWindowRateTotal()), Toast.LENGTH_SHORT).show();
-				
 				
 				return true;
 			}
@@ -140,11 +136,8 @@ public class CalendarFragment extends Fragment {
 				
 				mListener.onTicketChangedListener();
 				
-						
+				//display quick popup message
 				Toast.makeText(getActivity(), tMessage, Toast.LENGTH_SHORT).show();
-				
-			//	Toast.makeText(getActivity(),  Integer.toString(MainActivity.datesAndTickets.size()), Toast.LENGTH_SHORT).show();
-				Toast.makeText(getActivity(),  Integer.toString(MainActivity.getWindowRateTotal()), Toast.LENGTH_SHORT).show();
 				
 				return true;
 			}
@@ -167,13 +160,17 @@ public class CalendarFragment extends Fragment {
 	@Override
 	public void onPause() {
 		super.onPause();
-		System.out.println("CalendarFragment paused");
+		
+		//debug console output
+		//System.out.println("CalendarFragment paused");
 	}
 	
 	@Override
 	public void onResume() {
 		super.onResume();
-		System.out.println("CalendarFragment resumed");
+		
+		//debug console output
+		//System.out.println("CalendarFragment resumed");
 	}
 	
 }

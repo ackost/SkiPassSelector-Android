@@ -38,7 +38,8 @@ public class ResultsFragment extends Fragment{
 	public void onResume() {
 		super.onResume();
 		
-		System.out.println("ResultsFragment onResume called");
+		//debug console output
+		//System.out.println("ResultsFragment onResume called");
 		
 		TextView seasonPassTextView = (TextView)getView().findViewById(R.id.seasonPassResultsText);
 		seasonPassTextView.setText("$" + Integer.toString(MainActivity.getSeasonPassTotal()) + ".00");
@@ -60,7 +61,9 @@ public class ResultsFragment extends Fragment{
 	@Override
 	public void onPause() {
 		super.onPause();
-		System.out.println("ResultsFragment paused");
+		
+		//debug console output
+		//System.out.println("ResultsFragment paused");
 	}
 	
 

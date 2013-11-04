@@ -44,33 +44,45 @@ public class ChartFragment extends Fragment {
 	public void onResume() {
 		super.onResume();
 
-		System.out.println("ChartFragment onResume called");
+		//debug console output
+		//System.out.println("ChartFragment onResume called");
+		
 		LinearLayout chartContainer = (LinearLayout)getView().findViewById(R.id.chart_container);
+		//if there's an existing bgView, remove it before adding new one (if not, new one won't display)
 		if (bgView != null){
 			chartContainer.removeView(bgView);
 		}
+		//get current date/time to create a unique label for a new series
 		Date dateStamp = new java.util.Date();
 		Format formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		String ds = formatter.format(dateStamp);
-		System.out.println("ds = " + ds);
+		//debug console output
+		//System.out.println("ds = " + ds);
 		bgView = bg.getView(getActivity(), bg.addNewSeries(ds));
+		
 		chartContainer.addView(bgView);
 	}
 	
 	@Override
 	public void onPause() {
 		super.onPause();
-		System.out.println("ChartFragment paused");
+		//debug console output
+		//System.out.println("ChartFragment paused");
 	}
 	
 	@Override
 	public void setUserVisibleHint(boolean isVisibleToUser) {
 	    super.setUserVisibleHint(isVisibleToUser);
 	    if (isVisibleToUser) {
-	    	System.out.println("ChartFragment is visibleHint = " + isVisibleToUser);
+	    	//debug console output
+	    	//System.out.println("ChartFragment is visibleHint = " + isVisibleToUser);
+	    	
 	    	this.onResume();
 	    }
-	    else { System.out.println("ChartFragment is visibleHint = " + isVisibleToUser); }
+	    else { 
+	    	//debug console output
+	    	//System.out.println("ChartFragment is visibleHint = " + isVisibleToUser); 
+	    }
 	}
 	
 }
