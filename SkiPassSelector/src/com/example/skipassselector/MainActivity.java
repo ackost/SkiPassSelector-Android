@@ -3,8 +3,6 @@ package com.example.skipassselector;
 import java.util.HashMap;
 import java.util.Locale;
 
-import org.achartengine.GraphicalView;
-
 import android.app.ActionBar;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
@@ -15,7 +13,6 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.example.skipassselector.CalendarFragment.OnTicketChangedListener;
@@ -43,6 +40,7 @@ public class MainActivity extends FragmentActivity implements
 	public static HashMap<String, String> datesAndTickets = new HashMap<String, String>();
 	public static boolean earlyPassPriceFlag = true;		
 	static TicketSets ticketsets;  //enum of ticket names
+	
 	
 	
 	@Override
@@ -123,7 +121,10 @@ public class MainActivity extends FragmentActivity implements
 			FragmentTransaction fragmentTransaction) {
 		// When the given tab is selected, switch to the corresponding page in
 		// the ViewPager.
+		
 		mViewPager.setCurrentItem(tab.getPosition());
+		System.out.println("TabSelected: " + (tab.getPosition()));
+	
 		
 	}
 
@@ -184,7 +185,7 @@ public class MainActivity extends FragmentActivity implements
 		return total;
 	}
 	
-	public static float getAcRateTotal() {
+	public static double getAcRateTotal() {
 		// returns the sum tickets * rates, at advantage card rates, after removing 1 of every 6 days 
 		
 		int fhmwDays = 0;
@@ -197,7 +198,7 @@ public class MainActivity extends FragmentActivity implements
 		int nwkndDays = 0;
 		
 		int reduceDays = 0;
-		float total = 0;
+		double total = 0;
 		
 		for (String s : datesAndTickets.values()){
 			if (s.equals("FOUR_HOUR_MW"))
@@ -250,7 +251,7 @@ public class MainActivity extends FragmentActivity implements
 			
 		}
 		// now reduce total by advantage card discount (40%)
-		total = (float) (total * 0.6);
+		total = (double) (total * 0.6);
 		
 		if (earlyPassPriceFlag) {
 			 total = total + 84; 
@@ -260,7 +261,7 @@ public class MainActivity extends FragmentActivity implements
 		return total;
 	}
 	
-	public static float getNccRateTotal(){
+	public static double getNccRateTotal(){
 		// Night tickets after Jan 2nd are free
 		// other tickets are at window rate
 		int fhmwDays = 0;
@@ -305,7 +306,7 @@ public class MainActivity extends FragmentActivity implements
 		return total;
 	};
 	
-	public static float getNccAcRateTotal(){
+	public static double getNccAcRateTotal(){
 		//night tickets after Jan 2nd are free
 		//non-night tickets and any tickets before Jan 2nd are 40%
 		//every 6th ticket (not counting nights after Jan 2nd) is free
@@ -319,7 +320,7 @@ public class MainActivity extends FragmentActivity implements
 		int nwkndDays = 0;
 		
 		int reduceDays = 0;
-		float total = 0;
+		double total = 0;
 		
 		//gets counts of all tickets excepts Nights after Jan 2nd
 		for (String s : datesAndTickets.values()){
@@ -372,7 +373,7 @@ public class MainActivity extends FragmentActivity implements
 		}
 		
 		// now reduce total by advantage card discount (40%)
-		total = (float) (total * 0.6);
+		total = (double) (total * 0.6);
 		
 		if (earlyPassPriceFlag) {
 			 total = total + 199; 
@@ -398,34 +399,26 @@ public class MainActivity extends FragmentActivity implements
 			// getItem is called to instantiate the fragment for the given page.
 			switch (position) {
 			case 0:
-				Fragment fragment = new CalendarFragment();
-				Bundle args = new Bundle();
-				args.putInt(CalendarFragment.ARG_SECTION_NUMBER, position + 1);
-				fragment.setArguments(args);
-				return fragment;
+				Fragment fragment0 = new CalendarFragment();
+				Bundle args0 = new Bundle();
+				args0.putInt(CalendarFragment.ARG_SECTION_NUMBER, position + 1);
+				fragment0.setArguments(args0);
+				return fragment0;
+			case 1:
+				Fragment fragment1 = new ChartFragment();
+				Bundle args1 = new Bundle();
+				args1.putInt(ChartFragment.ARG_SECTION_NUMBER, position + 1);
+				fragment1.setArguments(args1);
+				return fragment1;
 			case 2:
-				Fragment fragment2 = new ChartFragment();
+				Fragment fragment2 = new ResultsFragment();
 				Bundle args2 = new Bundle();
-				args2.putInt(ChartFragment.ARG_SECTION_NUMBER, position + 1);
+				args2.putInt(ResultsFragment.ARG_SECTION_NUMBER, position + 1);
 				fragment2.setArguments(args2);
 				return fragment2;
-			case 1:
-				Fragment fragment3 = new ResultsFragment();
-				Bundle args3 = new Bundle();
-				args3.putInt(ResultsFragment.ARG_SECTION_NUMBER, position + 1);
-				fragment3.setArguments(args3);
-				return fragment3;
 				
-			
-			//default to Calendar Fragment	
-			default:
-				Fragment fragment4 = new CalendarFragment();
-				Bundle args4 = new Bundle();
-				args4.putInt(CalendarFragment.ARG_SECTION_NUMBER, position + 1);
-				fragment4.setArguments(args4);
-				return fragment4;
 			}
-					
+			return null;
 		}
 
 		@Override
@@ -454,10 +447,8 @@ public class MainActivity extends FragmentActivity implements
 		
 	//	String tMessage = "Just testing this listener";
 	//	Toast.makeText(MainActivity.this, tMessage, Toast.LENGTH_SHORT).show();
-		
-	
-		
-		
+
 	}
+	
 		
 }

@@ -45,22 +45,32 @@ public class ChartFragment extends Fragment {
 		super.onResume();
 
 		System.out.println("ChartFragment onResume called");
-		
 		LinearLayout chartContainer = (LinearLayout)getView().findViewById(R.id.chart_container);
+		if (bgView != null){
+			chartContainer.removeView(bgView);
+		}
 		Date dateStamp = new java.util.Date();
 		Format formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		String ds = formatter.format(dateStamp);
 		System.out.println("ds = " + ds);
 		bgView = bg.getView(getActivity(), bg.addNewSeries(ds));
 		chartContainer.addView(bgView);
-		
-
 	}
 	
 	@Override
 	public void onPause() {
 		super.onPause();
 		System.out.println("ChartFragment paused");
+	}
+	
+	@Override
+	public void setUserVisibleHint(boolean isVisibleToUser) {
+	    super.setUserVisibleHint(isVisibleToUser);
+	    if (isVisibleToUser) {
+	    	System.out.println("ChartFragment is visibleHint = " + isVisibleToUser);
+	    	this.onResume();
+	    }
+	    else { System.out.println("ChartFragment is visibleHint = " + isVisibleToUser); }
 	}
 	
 }

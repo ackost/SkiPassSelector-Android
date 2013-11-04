@@ -1,5 +1,9 @@
 package com.example.skipassselector;
 
+import java.math.BigDecimal;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+
 import org.achartengine.ChartFactory;
 import org.achartengine.GraphicalView;
 import org.achartengine.chart.BarChart.Type;
@@ -11,7 +15,6 @@ import org.achartengine.renderer.XYSeriesRenderer;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Paint.Align;
-import android.widget.Toast;
 
 
 
@@ -56,9 +59,13 @@ public class BarGraph {
 	        mRenderer.setXLabelsColor(Color.BLACK);
 	        mRenderer.setYLabelsColor(0, Color.BLACK);
 	        
+	        NumberFormat numFormat = NumberFormat.getCurrencyInstance();
+	        
 			XYSeriesRenderer renderer = new XYSeriesRenderer();
 			renderer.setChartValuesTextSize(16);
 			renderer.setDisplayChartValues(true);
+			renderer.setChartValuesFormat(numFormat);
+			//renderer.setChartValuesTextAlign(Align.CENTER);
 			renderer.setGradientEnabled(true);
 			renderer.setGradientStart(0, Color.GREEN);
 			renderer.setGradientStop(300, Color.BLUE);
@@ -73,11 +80,11 @@ public class BarGraph {
 		public XYSeries addNewSeries(String seriesLabel) {
 			System.out.println("BarGraph addNewSeries called");
 			
-			float sp = 0;
-			float ac = 0;
-			float ncc = 0;
-			float nccAc = 0;
-			float wr = 0;
+			double sp = 0;
+			double ac = 0;
+			double ncc = 0;
+			double nccAc = 0;
+			double wr = 0;
 			
 			sp = MainActivity.getSeasonPassTotal();
 			ac = MainActivity.getAcRateTotal();
@@ -85,7 +92,7 @@ public class BarGraph {
 			nccAc = MainActivity.getNccAcRateTotal();
 			wr = MainActivity.getWindowRateTotal();
 			
-			float[] y = {sp, ac, ncc, nccAc, wr};
+			double[] y = {sp, ac, ncc, nccAc, wr};
 			
 			System.out.println("sp = " + sp);
 			System.out.println("ac = " + ac);
@@ -101,4 +108,5 @@ public class BarGraph {
 			}
 			return series;
 		}
+
 }
