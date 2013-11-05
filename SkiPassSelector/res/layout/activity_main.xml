@@ -4,10 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity" >
-    <fragment android:name="com.example.skipassselector.CalendarFragment"
-            android:id="@+id/Calendar_Fragment"
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:layout_height="match_parent" />
+ 
  
 </android.support.v4.view.ViewPager>

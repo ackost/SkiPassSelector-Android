@@ -4,7 +4,9 @@ import java.util.HashMap;
 import java.util.Locale;
 
 import android.app.ActionBar;
+import android.app.AlertDialog;
 import android.app.FragmentTransaction;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -16,10 +18,11 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.example.skipassselector.CalendarFragment.OnTicketChangedListener;
+import com.example.skipassselector.ResetDialog.OnResetSelectedListener;
 
 
 public class MainActivity extends FragmentActivity implements
-		ActionBar.TabListener, OnTicketChangedListener  {  //
+		ActionBar.TabListener, OnTicketChangedListener, OnResetSelectedListener  {  //
 
 	/**
 	 * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -93,9 +96,8 @@ public class MainActivity extends FragmentActivity implements
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()){
 		case R.id.reset_button:
-			datesAndTickets.clear();
-			Toast.makeText(MainActivity.this, "All dates cleared", Toast.LENGTH_SHORT).show();
-			//TODO: make change instantly apparent from any tab
+			ResetDialog resetDialog = new ResetDialog();
+			resetDialog.show(getSupportFragmentManager(),"resetter");
 			return true;
 		case R.id.action_settings:
 			//TODO: take out settings menu?
@@ -121,9 +123,6 @@ public class MainActivity extends FragmentActivity implements
 		// the ViewPager.
 		
 		mViewPager.setCurrentItem(tab.getPosition());
-		
-		//debug console output
-		//System.out.println("TabSelected: " + (tab.getPosition()));	
 	}
 
 	@Override
@@ -440,6 +439,7 @@ public class MainActivity extends FragmentActivity implements
 		}
 	}
 
+	
 	@Override
 	public void onTicketChangedListener() {
 	
@@ -449,5 +449,9 @@ public class MainActivity extends FragmentActivity implements
 
 	}
 	
-		
+
+	@Override
+	public void onPositiveClickListener() {
+		datesAndTickets.clear();
+	}
 }

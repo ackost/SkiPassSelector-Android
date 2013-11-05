@@ -3,11 +3,19 @@
 
     <string name="app_name">Ski Pass Selector</string>
     <string name="action_settings">Settings</string>
-    <string name="reset_button">Reset (Clear all days)</string>
+    <string name="reset_title">Reset? (Clears all days)</string>
+    <string name="reset_button">Reset</string>
     <string name="earlyPassFlagTitle">Early bird pass prices?</string>
     <string name="title_section1">Calendar</string>
     <string name="title_section2">Graph</string>
     <string name="title_section3">Results</string>
     <string name="legend">N = night, A = all day, 4 = 4 hr, 8 = 8hr </string>
 	<string name="footer">Tap a day, then select a ticket type</string>
+	<string name="cancel">Cancel</string>
+	
+	<string name="Season_pass">Season Pass</string>
+	<string name="Adv_card">Advantage Card</string>
+	<string name="Night_card">Night Club Card</string>
+	<string name="NCC_w_AC">NCC with AC</string>
+	<string name="Window_rate">Window Rate</string>
 </resources>

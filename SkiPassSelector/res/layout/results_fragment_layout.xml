@@ -14,7 +14,7 @@
         android:layout_marginTop="18dp"
         android:layout_marginLeft="18dp"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Season Pass" />
+        android:text="@string/Season_pass" />
     <TextView
         android:id="@+id/seasonPassResultsText"
         android:layout_width="wrap_content"
@@ -34,7 +34,7 @@
         android:layout_marginTop="30dp"
         android:layout_marginLeft="18dp"
         android:layout_alignParentLeft="true"
-        android:text="Advantage Card"
+        android:text="@string/Adv_card"
         android:textAppearance="?android:attr/textAppearanceLarge" />
     <TextView
         android:id="@+id/advantageCardResultsText"
@@ -55,7 +55,7 @@
         android:layout_marginTop="30dp"
         android:layout_marginLeft="18dp"
         android:layout_alignParentLeft="true"
-        android:text="Night Club Card"
+        android:text="@string/Night_card"
         android:textAppearance="?android:attr/textAppearanceLarge" />
    <TextView
         android:id="@+id/nightClubResultsText"
@@ -76,7 +76,7 @@
         android:layout_marginTop="30dp"
         android:layout_marginLeft="18dp"
         android:layout_alignParentLeft="true"
-        android:text="NCC with AC"
+        android:text="@string/NCC_w_AC"
         android:textAppearance="?android:attr/textAppearanceLarge" />
     <TextView
         android:id="@+id/nccAcResultsText"
@@ -97,7 +97,7 @@
         android:layout_marginTop="30dp"
         android:layout_marginLeft="18dp"
         android:layout_alignParentLeft="true"
-        android:text="Window Rate"
+        android:text="@string/Window_rate"
         android:textAppearance="?android:attr/textAppearanceLarge" />
     <TextView
         android:id="@+id/windowRateResultsText"
