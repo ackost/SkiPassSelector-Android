@@ -4,9 +4,7 @@ import java.util.HashMap;
 import java.util.Locale;
 
 import android.app.ActionBar;
-import android.app.AlertDialog;
 import android.app.FragmentTransaction;
-import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -15,7 +13,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
+//import android.widget.Toast;
 
 import com.example.skipassselector.CalendarFragment.OnTicketChangedListener;
 import com.example.skipassselector.ResetDialog.OnResetSelectedListener;
