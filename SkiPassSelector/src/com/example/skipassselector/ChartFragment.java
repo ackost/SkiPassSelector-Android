@@ -67,7 +67,7 @@ public class ChartFragment extends Fragment {
 	public void onPause() {
 		super.onPause();
 		//debug console output
-		//System.out.println("ChartFragment paused");
+		System.out.println("ChartFragment paused");
 	}
 	
 	@Override
@@ -75,13 +75,13 @@ public class ChartFragment extends Fragment {
 	    super.setUserVisibleHint(isVisibleToUser);
 	    if (isVisibleToUser) {
 	    	//debug console output
-	    	//System.out.println("ChartFragment is visibleHint = " + isVisibleToUser);
+	    	System.out.println("ChartFragment is visibleHint = " + isVisibleToUser);
 	    	
 	    	this.onResume();
 	    }
 	    else { 
 	    	//debug console output
-	    	//System.out.println("ChartFragment is visibleHint = " + isVisibleToUser); 
+	    	System.out.println("ChartFragment is visibleHint = " + isVisibleToUser); 
 	    }
 	}
 	

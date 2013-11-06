@@ -97,8 +97,9 @@ public class MainActivity extends FragmentActivity implements
 			ResetDialog resetDialog = new ResetDialog();
 			resetDialog.show(getSupportFragmentManager(),"resetter");
 			return true;
-		case R.id.action_settings:
-			//TODO: take out settings menu?
+		case R.id.help:
+			HelpDialogFragment helpDialog = new HelpDialogFragment();
+			helpDialog.show(getSupportFragmentManager(),"helper");
 			return true;
 		case R.id.earlyPassFlagItem:
 			if (item.isChecked()) {

@@ -70,10 +70,6 @@ public class CalendarFragment extends Fragment {
 	        		esf = "";
 	        	}
 	        	
-	        	System.out.println("month = " + month+1 + ", day = " + dayOfMonth + " esf = " + esf);
-	        	
-				Toast.makeText(getActivity(),  mdy, Toast.LENGTH_SHORT).show();
-	        	
 	        	int dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK);
 	        	if (dayOfWeek == 1 || dayOfWeek == 7) {  // 1 = Sunday, 7 = Saturday            	
 	        		popupMenuWknd.show();
@@ -240,7 +236,7 @@ public class CalendarFragment extends Fragment {
 		super.onPause();
 		
 		//debug console output
-		//System.out.println("CalendarFragment paused");
+		System.out.println("CalendarFragment paused");
 	}
 	
 	@Override
@@ -248,7 +244,7 @@ public class CalendarFragment extends Fragment {
 		super.onResume();
 		
 		//debug console output
-		//System.out.println("CalendarFragment resumed");
+		System.out.println("CalendarFragment resumed");
 	}
 	
 }

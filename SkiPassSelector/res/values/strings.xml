@@ -3,6 +3,7 @@
 
     <string name="app_name">Ski Pass Selector</string>
     <string name="action_settings">Settings</string>
+    <string name="help_menu">Help</string>
     <string name="reset_title">Reset? (Clears all days)</string>
     <string name="reset_button">Reset</string>
     <string name="earlyPassFlagTitle">Early bird pass prices?</string>
@@ -10,7 +11,7 @@
     <string name="title_section2">Graph</string>
     <string name="title_section3">Results</string>
     <string name="legend">N = night, A = all day, 4 = 4 hr, 8 = 8hr </string>
-	<string name="footer">Tap a day, then select a ticket type</string>
+	<string name="footer">"<i>Tap a day, then select a ticket type</i>"</string>
 	<string name="cancel">Cancel</string>
 	
 	<string name="Season_pass">Season Pass</string>
@@ -18,4 +19,20 @@
 	<string name="Night_card">Night Club Card</string>
 	<string name="NCC_w_AC">NCC with AC</string>
 	<string name="Window_rate">Window Rate</string>
+	
+	<string name="help_contents">"Planning on taking some snow days this year?  Can’t decide which option is the best bang for the buck? \n
+This app uses the 2013/14 rates for Liberty Mountain, Whitetail Mountain, and Roundtop resorts.  Just pick which days you’re planning on skiing, choose a ticket type for each day, and the app will do the math for you.\n 
+There’s a toggle in the menu to choose between “early-bird” and full-price options for Season Passes and Advantage Cards.    If you purchase either of these passes before Nov. 1st, you’ll get the best savings. \n
+You can only select one ticket type for any given day. \n
+If you’d like to start over, there’s a reset option in the menu. \n \n
+
+Known Issues in Ver. 1.0: \n
+* The reset option doesn’t trigger a refresh in the Chart or the Results views.  <i>Visit the Calendar and return to see the effects of a reset.</i> \n \n
+* The ticket menu pops up when scrolling through the calendar.  <i>It can be dismissed with the back button, or any click outside of the menu.</i> \n \n
+* Tapping on the currently highlighted day does not bring up the ticket menu.  <i>Select a different day, dismiss the ticket menu, and reselect the desired day.</i> \n \n
+* There’s no indicator on the calendar for days that have had a ticket added.  This is a limitation of the Android CalendarView widget, with no simple workaround available. \n \n
+* Discounts for 2-day consecutive passes are not included." \n \n
+
+<i>Press the back button to exit Help</i>
+	</string>
 </resources>
