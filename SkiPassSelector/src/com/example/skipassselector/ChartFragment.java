@@ -45,7 +45,7 @@ public class ChartFragment extends Fragment {
 		super.onResume();
 
 		//debug console output
-		System.out.println("ChartFragment onResume called");
+		//System.out.println("ChartFragment onResume called");
 		
 		LinearLayout chartContainer = (LinearLayout)getView().findViewById(R.id.chart_container);
 		//if there's an existing bgView, remove it before adding new one (if not, new one won't display)
@@ -67,7 +67,7 @@ public class ChartFragment extends Fragment {
 	public void onPause() {
 		super.onPause();
 		//debug console output
-		System.out.println("ChartFragment paused");
+		//System.out.println("ChartFragment paused");
 	}
 	
 	@Override
@@ -75,13 +75,13 @@ public class ChartFragment extends Fragment {
 	    super.setUserVisibleHint(isVisibleToUser);
 	    if (isVisibleToUser) {
 	    	//debug console output
-	    	System.out.println("ChartFragment is visibleHint = " + isVisibleToUser);
+	    	//System.out.println("ChartFragment is visibleHint = " + isVisibleToUser);
 	    	
 	    	this.onResume();
 	    }
 	    else { 
 	    	//debug console output
-	    	System.out.println("ChartFragment is visibleHint = " + isVisibleToUser); 
+	    	//System.out.println("ChartFragment is visibleHint = " + isVisibleToUser); 
 	    }
 	}
 	

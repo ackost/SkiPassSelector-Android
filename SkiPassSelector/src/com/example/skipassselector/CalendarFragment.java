@@ -66,7 +66,11 @@ public class CalendarFragment extends Fragment {
 	        	
 	        	if (month+1 > 9 || (month+1==1 && dayOfMonth < 3)){
 	        		esf = "_ESF";  
+	        	} else {
+	        		esf = "";
 	        	}
+	        	
+	        	System.out.println("month = " + month+1 + ", day = " + dayOfMonth + " esf = " + esf);
 	        	
 				Toast.makeText(getActivity(),  mdy, Toast.LENGTH_SHORT).show();
 	        	
@@ -84,24 +88,61 @@ public class CalendarFragment extends Fragment {
 			String tMessage = "Midweek ticket added";
 			@Override
 			public boolean onMenuItemClick(MenuItem item) {
-				switch (item.getItemId()){
-				case R.id.fourHr:
-					MainActivity.datesAndTickets.put(mdy, "FOUR_HOUR_MW");
-					break;
-				case R.id.eightHr:
-					MainActivity.datesAndTickets.put(mdy, "EIGHT_HOUR_MW");
-					break;
-				case R.id.allday:
-					MainActivity.datesAndTickets.put(mdy, "ALL_DAY_MW");
-					break;
-				case R.id.night:
-					MainActivity.datesAndTickets.put(mdy, "NIGHT_MW" + esf);
-					break;
-				case R.id.remove:
-					MainActivity.datesAndTickets.remove(mdy);
-					tMessage = "Midweek ticket removed";
+				//if day does not exist in hashmap, add new k/v
+				if (!MainActivity.datesAndTickets.containsKey(mdy)) {
+					switch (item.getItemId()){
+					case R.id.fourHr:
+						MainActivity.datesAndTickets.put(mdy, "FOUR_HOUR_MW");
+						break;
+					case R.id.eightHr:
+						MainActivity.datesAndTickets.put(mdy, "EIGHT_HOUR_MW");
+						break;
+					case R.id.allday:
+						MainActivity.datesAndTickets.put(mdy, "ALL_DAY_MW");
+						break;
+					case R.id.night:
+						MainActivity.datesAndTickets.put(mdy, "NIGHT_MW" + esf);
+						break;
+					case R.id.remove:
+						MainActivity.datesAndTickets.remove(mdy);
+						tMessage = "Day already empty";
+					}
+				} else {
+					//if day was previously added to hashmap, check if ticket type is different this time
+					switch (item.getItemId()){
+					case R.id.fourHr:
+						if (MainActivity.datesAndTickets.containsValue("FOUR_HOUR_MW")) {
+							tMessage = "no change";
+						} else {
+							MainActivity.datesAndTickets.put(mdy, "FOUR_HOUR_MW");
+						}
+						break;
+					case R.id.eightHr:
+						if (MainActivity.datesAndTickets.containsValue("EIGHT_HOUR_MW")) {
+							tMessage = "no change";
+						} else {
+							MainActivity.datesAndTickets.put(mdy, "EIGHT_HOUR_MW");
+						}
+						break;
+					case R.id.allday:
+						if (MainActivity.datesAndTickets.containsValue("ALL_DAY_MW")) {
+							tMessage = "no change";
+						} else {
+							MainActivity.datesAndTickets.put(mdy, "ALL_DAY_MW");
+						}
+						break;
+					case R.id.night:
+						if (MainActivity.datesAndTickets.containsValue("NIGHT_MW" + esf)) {
+							tMessage = "no change";
+						} else {
+							MainActivity.datesAndTickets.put(mdy, "NIGHT_MW" + esf);
+						}
+						break;
+					case R.id.remove:
+						MainActivity.datesAndTickets.remove(mdy);
+						tMessage = "Midweek ticket removed";
+					}
 				}
-		
 				mListener.onTicketChangedListener();
 				
 				//display quick popup message
@@ -115,24 +156,61 @@ public class CalendarFragment extends Fragment {
 			String tMessage = "Weekend ticket added";
 			@Override
 			public boolean onMenuItemClick(MenuItem item) {
-				switch (item.getItemId()){
-				case R.id.fourHr:
-					MainActivity.datesAndTickets.put(mdy, "FOUR_HOUR_WKND");
-					break;
-				case R.id.eightHr:
-					MainActivity.datesAndTickets.put(mdy, "EIGHT_HOUR_WKND");
-					break;
-				case R.id.allday:
-					MainActivity.datesAndTickets.put(mdy, "ALL_DAY_WKND");
-					break;
-				case R.id.night:					
-					MainActivity.datesAndTickets.put(mdy, "NIGHT_WKND" + esf);
-					break;
-				case R.id.remove:
-					MainActivity.datesAndTickets.remove(mdy);
-					tMessage = "Weekend ticket removed";
+				//if day does not exist in hashmap, add new k/v
+				if (!MainActivity.datesAndTickets.containsKey(mdy)) {
+					switch (item.getItemId()){
+					case R.id.fourHr:
+						MainActivity.datesAndTickets.put(mdy, "FOUR_HOUR_WKND");
+						break;
+					case R.id.eightHr:
+						MainActivity.datesAndTickets.put(mdy, "EIGHT_HOUR_WKND");
+						break;
+					case R.id.allday:
+						MainActivity.datesAndTickets.put(mdy, "ALL_DAY_WKND");
+						break;
+					case R.id.night:					
+						MainActivity.datesAndTickets.put(mdy, "NIGHT_WKND" + esf);
+						break;
+					case R.id.remove:
+						MainActivity.datesAndTickets.remove(mdy);
+						tMessage = "Weekend ticket removed";
+					}
+				} else {
+					//if day was previously added to hashmap, check if ticket type is different this time
+					switch (item.getItemId()){
+					case R.id.fourHr:
+						if (MainActivity.datesAndTickets.containsValue("FOUR_HOUR_WKND")) {
+							tMessage = "no change";
+						} else {
+							MainActivity.datesAndTickets.put(mdy, "FOUR_HOUR_WKND");
+						}
+						break;
+					case R.id.eightHr:
+						if (MainActivity.datesAndTickets.containsValue("EIGHT_HOUR_WKND")) {
+							tMessage = "no change";
+						} else {
+							MainActivity.datesAndTickets.put(mdy, "EIGHT_HOUR_WKND");
+						}
+						break;
+					case R.id.allday:
+						if (MainActivity.datesAndTickets.containsValue("ALL_DAY_WKND")) {
+							tMessage = "no change";
+						} else {
+							MainActivity.datesAndTickets.put(mdy, "ALL_DAY_WKND");
+						}
+						break;
+					case R.id.night:
+						if (MainActivity.datesAndTickets.containsValue("NIGHT_WKND" + esf)) {
+							tMessage = "no change";
+						} else {
+							MainActivity.datesAndTickets.put(mdy, "NIGHT_WKND" + esf);
+						}
+						break;
+					case R.id.remove:
+						MainActivity.datesAndTickets.remove(mdy);
+						tMessage = "Weekend ticket removed";
+					}
 				}
-				
 				
 				mListener.onTicketChangedListener();
 				
