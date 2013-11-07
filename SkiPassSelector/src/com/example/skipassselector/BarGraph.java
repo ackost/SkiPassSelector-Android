@@ -36,8 +36,9 @@ public class BarGraph {
 	        mRenderer.setMarginsColor(Color.WHITE);
 	        mRenderer.setZoomEnabled(true);
 	        mRenderer.setBarSpacing(.5);
-	        mRenderer.setMargins(new int[] {30, 50, 20, 15});
-	        mRenderer.setShowLegend(false);
+	        mRenderer.setMargins(new int[] {30, 50, 10, 15});
+	        mRenderer.setShowLegend(true);
+	        mRenderer.setLegendHeight(45);
 	        mRenderer.setAxisTitleTextSize(16);
 	        mRenderer.setChartTitleTextSize(20);
 	        mRenderer.setLabelsTextSize(18);
@@ -55,13 +56,13 @@ public class BarGraph {
 	        mRenderer.setLabelsColor(Color.BLACK);
 	        mRenderer.setXLabelsColor(Color.BLACK);
 	        mRenderer.setYLabelsColor(0, Color.BLACK);
-	        
-	        NumberFormat numFormat = NumberFormat.getCurrencyInstance();
-	        
+	        double[] panLimits = {0, 0, 0, 1000};
+	        	mRenderer.setPanLimits(panLimits);
+
 			XYSeriesRenderer renderer = new XYSeriesRenderer();
 			renderer.setChartValuesTextSize(16);
 			renderer.setDisplayChartValues(true);
-			renderer.setChartValuesFormat(numFormat);
+			renderer.setChartValuesFormat(NumberFormat.getCurrencyInstance());
 			renderer.setGradientEnabled(true);
 			renderer.setGradientStart(0, Color.GREEN);
 			renderer.setGradientStop(300, Color.BLUE);
@@ -99,6 +100,8 @@ public class BarGraph {
 			System.out.println("nccAc = " + nccAc);
 			System.out.println("wr = " + wr);
 			*/
+			
+			seriesLabel = "Ticket count = " + Integer.toString(MainActivity.datesAndTickets.size());
 			
 			XYSeries series = new XYSeries(seriesLabel);
 			

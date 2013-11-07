@@ -15,6 +15,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 //import android.widget.Toast;
 
+import android.widget.Toast;
+
 import com.example.skipassselector.CalendarFragment.OnTicketChangedListener;
 import com.example.skipassselector.ResetDialog.OnResetSelectedListener;
 
@@ -109,6 +111,11 @@ public class MainActivity extends FragmentActivity implements
 				item.setChecked (true);
 				earlyPassPriceFlag=true;
 			}
+			int currItem = mViewPager.getCurrentItem();
+			if (currItem != 0) {
+				//if not on the CalendarView, go back to it. (triggers recalculations)
+				mViewPager.setCurrentItem(0);
+			};
 			return true;
 		default:
 			return super.onOptionsItemSelected(item);
@@ -453,5 +460,10 @@ public class MainActivity extends FragmentActivity implements
 	@Override
 	public void onPositiveClickListener() {
 		datesAndTickets.clear();
+		int currItem = mViewPager.getCurrentItem();
+		if (currItem != 0) {
+			//if not on the CalendarView, go back to it.
+			mViewPager.setCurrentItem(0);
+		};         
 	}
 }

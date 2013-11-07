@@ -27,9 +27,9 @@ You can only select one ticket type for any given day. \n
 If you’d like to start over, there’s a reset option in the menu. \n \n
 
 Known Issues in Ver. 1.0: \n
-* The reset option doesn’t trigger a refresh in the Chart or the Results views.  <i>Visit the Calendar and return to see the effects of a reset.</i> \n \n
 * The ticket menu pops up when scrolling through the calendar.  <i>It can be dismissed with the back button, or any click outside of the menu.</i> \n \n
 * Tapping on the currently highlighted day does not bring up the ticket menu.  <i>Select a different day, dismiss the ticket menu, and reselect the desired day.</i> \n \n
+* Changing the "Early Bird" option in the menu causes a return to the calendar.  \n \n
 * There’s no indicator on the calendar for days that have had a ticket added.  This is a limitation of the Android CalendarView widget, with no simple workaround available. \n \n
 * Discounts for 2-day consecutive passes are not included." \n \n
 

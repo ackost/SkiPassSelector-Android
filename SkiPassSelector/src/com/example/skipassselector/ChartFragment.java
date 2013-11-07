@@ -45,7 +45,9 @@ public class ChartFragment extends Fragment {
 		super.onResume();
 
 		//debug console output
-		//System.out.println("ChartFragment onResume called");
+		System.out.println("ChartFragment resumed");
+		System.out.println("Chart id = " + this.getId());
+		System.out.println("Chart tag = " + this.getTag());
 		
 		LinearLayout chartContainer = (LinearLayout)getView().findViewById(R.id.chart_container);
 		//if there's an existing bgView, remove it before adding new one (if not, new one won't display)
@@ -86,10 +88,3 @@ public class ChartFragment extends Fragment {
 	}
 	
 }
-	
-	
-	
-	
-
-	
-	

@@ -6,7 +6,7 @@
         android:title="@string/reset_button"/>
     <item 
         android:id="@+id/earlyPassFlagItem"
-         android:orderInCategory="50"
+        android:orderInCategory="50"
         android:title="@string/earlyPassFlagTitle"
         android:titleCondensed="Early bird?"
         android:checkable="true"
