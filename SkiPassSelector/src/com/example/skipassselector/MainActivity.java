@@ -20,7 +20,7 @@ import com.example.skipassselector.ResetDialog.OnResetSelectedListener;
 
 
 public class MainActivity extends FragmentActivity implements
-		ActionBar.TabListener, OnTicketChangedListener, OnResetSelectedListener  {  //
+		ActionBar.TabListener, OnTicketChangedListener, OnResetSelectedListener  {  
 
 	/**
 	 * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -134,6 +134,7 @@ public class MainActivity extends FragmentActivity implements
 			FragmentTransaction fragmentTransaction) {
 	}
 
+	//the next several get...Total methods handle the main arithmetic for the app
 	public static int getSeasonPassTotal() {
 		if (earlyPassPriceFlag) {
 			return 449; 
@@ -438,7 +439,7 @@ public class MainActivity extends FragmentActivity implements
 		}
 	}
 
-	
+	// this isn't in use now, but it could come in handy
 	@Override
 	public void onTicketChangedListener() {
 	
@@ -448,7 +449,7 @@ public class MainActivity extends FragmentActivity implements
 
 	}
 	
-
+	// this gets the reset callback from the menu
 	@Override
 	public void onPositiveClickListener() {
 		datesAndTickets.clear();
