@@ -46,21 +46,16 @@ public class ChartFragment extends Fragment {
 
 		//debug console output
 		System.out.println("ChartFragment resumed");
-		System.out.println("Chart id = " + this.getId());
-		System.out.println("Chart tag = " + this.getTag());
+		//System.out.println("Chart id = " + this.getId());
+		//System.out.println("Chart tag = " + this.getTag());
 		
 		LinearLayout chartContainer = (LinearLayout)getView().findViewById(R.id.chart_container);
 		//if there's an existing bgView, remove it before adding new one (if not, new one won't display)
 		if (bgView != null){
 			chartContainer.removeView(bgView);
 		}
-		//get current date/time to create a unique label for a new series
-		Date dateStamp = new java.util.Date();
-		Format formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		String ds = formatter.format(dateStamp);
-		//debug console output
-		//System.out.println("ds = " + ds);
-		bgView = bg.getView(getActivity(), bg.addNewSeries(ds));
+		
+		bgView = bg.getView(getActivity(), bg.addNewSeries());
 		
 		chartContainer.addView(bgView);
 	}

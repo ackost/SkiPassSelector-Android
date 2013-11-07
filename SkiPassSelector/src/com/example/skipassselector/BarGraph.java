@@ -74,7 +74,7 @@ public class BarGraph {
 			return barGraphView;
 		}
 		
-		public XYSeries addNewSeries(String seriesLabel) {
+		public XYSeries addNewSeries() {
 			//debug console output
 			//System.out.println("BarGraph addNewSeries called");
 			
@@ -101,7 +101,7 @@ public class BarGraph {
 			System.out.println("wr = " + wr);
 			*/
 			
-			seriesLabel = "Ticket count = " + Integer.toString(MainActivity.datesAndTickets.size());
+			String seriesLabel = "Ticket count = " + Integer.toString(MainActivity.datesAndTickets.size());
 			
 			XYSeries series = new XYSeries(seriesLabel);
 			

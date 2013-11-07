@@ -111,6 +111,7 @@ public class CalendarFragment extends Fragment {
 							tMessage = "no change";
 						} else {
 							MainActivity.datesAndTickets.put(mdy, "FOUR_HOUR_MW");
+							tMessage = "Ticket changed";
 						}
 						break;
 					case R.id.eightHr:
@@ -118,6 +119,7 @@ public class CalendarFragment extends Fragment {
 							tMessage = "no change";
 						} else {
 							MainActivity.datesAndTickets.put(mdy, "EIGHT_HOUR_MW");
+							tMessage = "Ticket changed";
 						}
 						break;
 					case R.id.allday:
@@ -125,6 +127,7 @@ public class CalendarFragment extends Fragment {
 							tMessage = "no change";
 						} else {
 							MainActivity.datesAndTickets.put(mdy, "ALL_DAY_MW");
+							tMessage = "Ticket changed";
 						}
 						break;
 					case R.id.night:
@@ -132,6 +135,7 @@ public class CalendarFragment extends Fragment {
 							tMessage = "no change";
 						} else {
 							MainActivity.datesAndTickets.put(mdy, "NIGHT_MW" + esf);
+							tMessage = "Ticket changed";
 						}
 						break;
 					case R.id.remove:
@@ -179,6 +183,7 @@ public class CalendarFragment extends Fragment {
 							tMessage = "no change";
 						} else {
 							MainActivity.datesAndTickets.put(mdy, "FOUR_HOUR_WKND");
+							tMessage = "Ticket changed";
 						}
 						break;
 					case R.id.eightHr:
@@ -186,6 +191,7 @@ public class CalendarFragment extends Fragment {
 							tMessage = "no change";
 						} else {
 							MainActivity.datesAndTickets.put(mdy, "EIGHT_HOUR_WKND");
+							tMessage = "Ticket changed";
 						}
 						break;
 					case R.id.allday:
@@ -193,6 +199,7 @@ public class CalendarFragment extends Fragment {
 							tMessage = "no change";
 						} else {
 							MainActivity.datesAndTickets.put(mdy, "ALL_DAY_WKND");
+							tMessage = "Ticket changed";
 						}
 						break;
 					case R.id.night:
@@ -200,6 +207,7 @@ public class CalendarFragment extends Fragment {
 							tMessage = "no change";
 						} else {
 							MainActivity.datesAndTickets.put(mdy, "NIGHT_WKND" + esf);
+							tMessage = "Ticket changed";
 						}
 						break;
 					case R.id.remove:
