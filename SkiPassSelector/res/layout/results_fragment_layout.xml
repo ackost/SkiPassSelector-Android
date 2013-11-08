@@ -109,6 +109,31 @@
         android:layout_alignLeft="@+id/seasonPassResultsText"
         android:textColor="@color/blue"
         android:ems="10" />
-       
+
+    <TextView
+        android:id="@+id/lowestAvgText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/windowRateText"
+        android:layout_marginTop="55dp"
+        android:layout_marginLeft="18dp"
+        android:layout_alignParentLeft="true" />
+    <TextView
+        android:id="@+id/lowestAvgName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/lowestAvgText"
+        android:layout_marginLeft="18dp"
+        android:layout_marginTop="10dp" 
+        android:layout_alignParentLeft="true"
+        android:textColor="@color/green" />
+    <TextView
+        android:id="@+id/lowestAvgResultsText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/lowestAvgText"
+        android:layout_marginTop="10dp"
+        android:layout_alignLeft="@+id/seasonPassResultsText" 
+        android:textColor="@color/green"/>
 
 </RelativeLayout>

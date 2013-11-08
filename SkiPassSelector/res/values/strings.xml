@@ -20,6 +20,7 @@
 	<string name="Night_card">Night Club Card</string>
 	<string name="NCC_w_AC">NCC with AC</string>
 	<string name="Window_rate">Window Rate</string>
+	<string name="Lowest_per_trip">Lowest Potential Average Cost per Trip:</string>
 	
 	<string name="help_contents">"Planning on taking some snow days this year?  Can’t decide which option is the best bang for the buck? \n
 This app uses the 2013/14 rates for Liberty Mountain, Whitetail Mountain, and Roundtop resorts.  Just pick which days you’re planning on skiing, choose a ticket type for each day, and the app will do the math for you.\n 

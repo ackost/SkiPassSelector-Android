@@ -1,9 +1,5 @@
 package com.example.skipassselector;
 
-import java.text.Format;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 import org.achartengine.GraphicalView;
 
 import android.os.Bundle;

@@ -39,6 +39,7 @@ public class BarGraph {
 	        mRenderer.setMargins(new int[] {30, 50, 10, 15});
 	        mRenderer.setShowLegend(true);
 	        mRenderer.setLegendHeight(45);
+	        mRenderer.setLegendTextSize(16);
 	        mRenderer.setAxisTitleTextSize(16);
 	        mRenderer.setChartTitleTextSize(20);
 	        mRenderer.setLabelsTextSize(18);

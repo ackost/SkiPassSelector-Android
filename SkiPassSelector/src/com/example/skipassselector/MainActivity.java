@@ -13,8 +13,6 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.Menu;
 import android.view.MenuItem;
-//import android.widget.Toast;
-
 import com.example.skipassselector.CalendarFragment.OnTicketChangedListener;
 import com.example.skipassselector.ResetDialog.OnResetSelectedListener;
 
@@ -464,4 +462,7 @@ public class MainActivity extends FragmentActivity implements
 			mViewPager.setCurrentItem(0);
 		};         
 	}
+	
+
+	
 }
