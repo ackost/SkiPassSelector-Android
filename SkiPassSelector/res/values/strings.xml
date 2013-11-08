@@ -26,12 +26,19 @@
 This app uses the 2013/14 rates for Liberty Mountain, Whitetail Mountain, and Roundtop resorts.  Just pick which days you’re planning on skiing, choose a ticket type for each day, and the app will do the math for you.\n 
 There’s a toggle in the menu to choose between “early-bird” and full-price options for Season Passes and Advantage Cards.    If you purchase either of these passes before Nov. 1st, you’ll get the best savings. \n
 You can only select one ticket type for any given day. \n
-If you’d like to start over, there’s a reset option in the menu. \n \n
+If you’d like to start over, there’s a reset option in the menu. \n 
+
+Pass details: \n
+Season Pass (SP) = pay a flat rate up front, take unlimited trips \n 
+Advantage Card (AC) = buy a discount card, get 40% off every ticket plus every 6th ticket is free \n 
+Night Club Card (NCC) = like a season pass, but only for night tickets, starting Jan 2nd \n 
+Night Club Card plus Advantage Card (NccAc) = get the Advantage Card at a reduced rate when you buy a Night Club Card \n 
+Window Rate (WR) = this is the price you'll pay with no discounts \n \n
 
 Known Issues in Ver. 1.0: \n
 * The ticket menu pops up when scrolling through the calendar.  <i>It can be dismissed with the back button, or any click outside of the menu.</i> \n \n
 * Tapping on the currently highlighted day does not bring up the ticket menu.  <i>Select a different day, dismiss the ticket menu, and reselect the desired day.</i> \n \n
-* There’s no indicator on the calendar for days that have had a ticket added.  This is a limitation of the Android CalendarView widget, with no simple workaround available. \n \n
+* There’s no indicator on the calendar for days that have had a ticket added.  (This is a limitation of the Android CalendarView widget, with no simple workaround available.) \n \n
 * Discounts for 2-day consecutive passes are not included." \n \n
 
 <i>Press the back button to exit Help</i>
