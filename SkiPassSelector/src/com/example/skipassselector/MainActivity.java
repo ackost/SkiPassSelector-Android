@@ -15,8 +15,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 //import android.widget.Toast;
 
-import android.widget.Toast;
-
 import com.example.skipassselector.CalendarFragment.OnTicketChangedListener;
 import com.example.skipassselector.ResetDialog.OnResetSelectedListener;
 

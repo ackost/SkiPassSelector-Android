@@ -4,7 +4,7 @@
     <string name="app_name">Ski Pass Selector</string>
     <string name="action_settings">Settings</string>
     <string name="help_menu">Help</string>
-    <string name="reset_title">Reset? (Clears all days)</string>
+    <string name="reset_title">Reset?</string>
     <string name="reset_button">Reset</string>
     <string name="earlyPassFlagTitle">Early bird pass prices?</string>
     <string name="title_section1">Calendar</string>
@@ -13,6 +13,7 @@
     <string name="legend">N = night, A = all day, 4 = 4 hr, 8 = 8hr </string>
 	<string name="footer">"<i>Tap a day, then select a ticket type</i>"</string>
 	<string name="cancel">Cancel</string>
+	<string name="reset_message">This will clear all tickets!</string>
 	
 	<string name="Season_pass">Season Pass</string>
 	<string name="Adv_card">Advantage Card</string>
@@ -29,7 +30,6 @@ If you’d like to start over, there’s a reset option in the menu. \n \n
 Known Issues in Ver. 1.0: \n
 * The ticket menu pops up when scrolling through the calendar.  <i>It can be dismissed with the back button, or any click outside of the menu.</i> \n \n
 * Tapping on the currently highlighted day does not bring up the ticket menu.  <i>Select a different day, dismiss the ticket menu, and reselect the desired day.</i> \n \n
-* Changing the "Early Bird" option in the menu causes a return to the calendar.  \n \n
 * There’s no indicator on the calendar for days that have had a ticket added.  This is a limitation of the Android CalendarView widget, with no simple workaround available. \n \n
 * Discounts for 2-day consecutive passes are not included." \n \n
 

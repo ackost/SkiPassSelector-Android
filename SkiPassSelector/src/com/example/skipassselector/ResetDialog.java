@@ -19,7 +19,8 @@ public class ResetDialog extends DialogFragment {
 	  	@Override
 	  	public Dialog onCreateDialog(Bundle savedInstanceState) {
 	        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-	        builder.setMessage(R.string.reset_title)
+	        builder.setTitle(R.string.reset_title);
+	        builder.setMessage(R.string.reset_message)
 	               .setPositiveButton(R.string.reset_button, new DialogInterface.OnClickListener() {
 	                   public void onClick(DialogInterface dialog, int id) {
 	                       mCallback.onPositiveClickListener();

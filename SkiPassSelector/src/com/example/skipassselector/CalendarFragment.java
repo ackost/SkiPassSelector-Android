@@ -63,6 +63,8 @@ public class CalendarFragment extends Fragment {
 	        	String m = Integer.toString(month + 1);
 	        	String y = Integer.toString(year);
 	        	mdy = m + "/" + d + "/" + y;
+	        	popupMenuWknd.getMenu().getItem(0).setTitle(mdy);
+	        	popupMenuMW.getMenu().getItem(0).setTitle(mdy);
 	        	
 	        	if (month+1 > 9 || (month+1==1 && dayOfMonth < 3)){
 	        		esf = "_ESF";  
